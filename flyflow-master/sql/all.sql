@@ -699,6 +699,13 @@ INSERT INTO `flyflow_menu` VALUES (1706144197164838914, 89, '0,89', '流程报�
 INSERT INTO `flyflow_menu` VALUES (1716270348700979202, 1, '0,1', '前端版本维护', 1, 'system/version', 'flyflow/views/system/version', NULL, 1, 1, 'language', NULL, '2023-10-23 09:48:33', '2023-10-23 09:48:33', 0, NULL);
 INSERT INTO `flyflow_menu` VALUES (1722242469999517698, 89, '0,89', '数据管理', 1, '/flow/datamanage', 'flyflow/views/flow/data', NULL, 1, 1, 'cascader', NULL, '2023-11-08 21:19:37', '2024-04-22 10:15:12', 1, NULL);
 INSERT INTO `flyflow_menu` VALUES (1732310200470892545, 3, '0,1,3', '分配权限', 4, '', NULL, 'sys:role:perm', 1, 1, '', NULL, '2023-12-06 16:05:11', '2023-12-06 16:05:11', 0, NULL);
+INSERT INTO `flyflow_menu` VALUES (1732310200470892546, 0, '0', 'AI实验室', 2, '/ai-lab', 'Layout', NULL, 1, 1, 'ai', '/ai-lab/model-management', NOW(), NOW(), 0, NULL);
+INSERT INTO `flyflow_menu` VALUES (1732310200470892547, 1732310200470892546, '0,1732310200470892546', 'AI模型管理', 1, '/model-management', 'ai-lab/model-management/index', NULL, 1, 1, 'model', NULL, NOW(), NOW(), 0, NULL);
+INSERT INTO `flyflow_menu` VALUES (1732310200470892548, 1732310200470892546, '0,1732310200470892546', 'AI任务管理', 1, '/task-management', 'ai-lab/task-management/index', NULL, 1, 2, 'task', NULL, NOW(), NOW(), 0, NULL);
+INSERT INTO `flyflow_menu` VALUES (1732310200470892549, 1732310200470892546, '0,1732310200470892546', 'AI模型训练', 1, '/model-training', 'ai-lab/model-training/index', NULL, 1, 3, 'training', NULL, NOW(), NOW(), 0, NULL);
+INSERT INTO `flyflow_menu` VALUES (1732310200470892550, 1732310200470892546, '0,1732310200470892546', 'AI任务监控', 1, '/task-monitoring', 'ai-lab/task-monitoring/index', NULL, 1, 4, 'monitor', NULL, NOW(), NOW(), 0, NULL);
+INSERT INTO `flyflow_menu` VALUES (1732310200470892551, 1732310200470892546, '0,1732310200470892546', 'AI模型评估', 1, '/model-evaluation', 'ai-lab/model-evaluation/index', NULL, 1, 5, 'evaluation', NULL, NOW(), NOW(), 0, NULL);
+INSERT INTO `flyflow_menu` VALUES (1732310200470892552, 1732310200470892546, '0,1732310200470892546', 'AI应用', 1, '/ai-applications', 'ai-lab/ai-applications/index', NULL, 1, 6, 'application', NULL, NOW(), NOW(), 0, NULL);
 
 -- ----------------------------
 -- Table structure for flyflow_dept_user
