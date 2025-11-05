@@ -1,5 +1,6 @@
 package cc.flyflow.common.dto;
 
+import java.lang.String;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
