@@ -5,7 +5,7 @@ node_modules/
 target/
 dist/
 build/
-
+**/target/
 # Logs
 logs/
 *.log
