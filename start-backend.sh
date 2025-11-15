@@ -5,7 +5,7 @@
 
 # Configuration
 PORT=8080
-BACKEND_DIR="/usr/local/share/github-space/auto-flowless-1/flyflow-master"
+BACKEND_DIR="/usr/local/share/github-space/auto-flowless-1/auto-flowless-backend"
 JAR_NAME="flyflow-web-*.jar"
 LOG_FILE="/usr/local/share/github-space/auto-flowless-1/backend.log"
 
