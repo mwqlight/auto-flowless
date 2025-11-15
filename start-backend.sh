@@ -4,10 +4,10 @@
 # This script checks if the backend application is already running, stops it if necessary, and then starts it
 
 # Configuration
-PORT=8080
-BACKEND_DIR="/usr/local/share/github-space/auto-flowless-1/auto-flowless-backend"
-JAR_NAME="flyflow-web-*.jar"
-LOG_FILE="/usr/local/share/github-space/auto-flowless-1/backend.log"
+PORT=26859
+BACKEND_DIR="/usr/local/share/data-marked-space/auto-flowless/auto-flowless-backend"
+JAR_NAME="web.jar"
+LOG_FILE="/usr/local/share/data-marked-space/auto-flowless/backend.log"
 
 # Check if the application is already running
 PID=$(lsof -t -i:$PORT 2>/dev/null)
