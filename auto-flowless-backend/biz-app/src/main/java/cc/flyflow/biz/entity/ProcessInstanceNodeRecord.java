@@ -15,8 +15,7 @@ import java.util.Date;
  * @author Vincent
  * @since 2023-07-06
  */
-@Getter
-@Setter
+@Data
 @Accessors(chain = true)
 public class ProcessInstanceNodeRecord extends BaseEntity {
 
@@ -88,7 +87,63 @@ public class ProcessInstanceNodeRecord extends BaseEntity {
     @TableField("`parent_node_id`")
     private String parentNodeId;
 
+    // 手动添加getter方法以确保编译通过
+    public String getNodeId() {
+        return nodeId;
+    }
 
+    public void setNodeId(String nodeId) {
+        this.nodeId = nodeId;
+    }
 
+    public String getProcessInstanceId() {
+        return processInstanceId;
+    }
 
+    public String getTenantId() {
+        return tenantId;
+    }
+
+    public String getExecutionId() {
+        return executionId;
+    }
+
+    public void setProcessInstanceId(String processInstanceId) {
+        this.processInstanceId = processInstanceId;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    // 从BaseEntity继承的方法
+    @Override
+    public Date getCreateTime() {
+        return super.getCreateTime();
+    }
+
+    @Override
+    public void setCreateTime(Date createTime) {
+        super.setCreateTime(createTime);
+    }
 }

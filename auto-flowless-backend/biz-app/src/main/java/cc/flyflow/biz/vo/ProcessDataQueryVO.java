@@ -27,6 +27,14 @@ public class ProcessDataQueryVO extends PageDto {
      */
     @ApiModelProperty("流程编码")
     private String processBizCode;
+
+    public String getProcessBizCode() {
+        return processBizCode;
+    }
+
+    public void setProcessBizCode(String processBizCode) {
+        this.processBizCode = processBizCode;
+    }
     /**
      * 流程id集合
      */
@@ -50,8 +58,49 @@ public class ProcessDataQueryVO extends PageDto {
     /**
      * 流程状态 {@link ProcessInstanceRecordStatusEnum}
      */
-    @ApiModelProperty("流程状态 {@link constants.cc.flyflow.biz.ProcessInstanceRecordStatusEnum}")
+    @ApiModelProperty("流程状态 {@link cc.flyflow.biz.constants.ProcessInstanceRecordStatusEnum}")
     private Integer status;
+
+    // Add missing getter and setter methods
+    public List<String> getFlowIdList() {
+        return flowIdList;
+    }
+
+    public void setFlowIdList(List<String> flowIdList) {
+        this.flowIdList = flowIdList;
+    }
+
+    public List<NodeUser> getStarterList() {
+        return starterList;
+    }
+
+    public void setStarterList(List<NodeUser> starterList) {
+        this.starterList = starterList;
+    }
+
+    public List<String> getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(List<String> startTime) {
+        this.startTime = startTime;
+    }
+
+    public List<String> getFinishTime() {
+        return finishTime;
+    }
+
+    public void setFinishTime(List<String> finishTime) {
+        this.finishTime = finishTime;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
 
 
 }

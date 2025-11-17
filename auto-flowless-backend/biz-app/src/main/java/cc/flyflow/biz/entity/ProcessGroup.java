@@ -29,5 +29,28 @@ public class ProcessGroup  extends BaseEntity {
     @TableField("`sort`")
     private Integer sort;
 
+    public String getId() {
+        return id;
+    }
+
+    public String getTenantId() {
+        return tenantId;
+    }
+
+
+
+    /**
+     * 获取排序
+     */
+    public Integer getSort() {
+        return sort;
+    }
+
+    /**
+     * 获取分组名
+     */
+    public String getGroupName() {
+        return groupName;
+    }
 
 }

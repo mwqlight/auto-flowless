@@ -45,6 +45,41 @@ public class ProcessForm extends BaseEntity {
 
 
     /**
+     * 设置流程唯一id
+     */
+    public void setUniqueId(String uniqueId) {
+        this.uniqueId = uniqueId;
+    }
+
+    /**
+     * 设置流程id
+     */
+    public void setFlowId(String flowId) {
+        this.flowId = flowId;
+    }
+
+    /**
+     * 设置表单名称
+     */
+    public void setFormName(String formName) {
+        this.formName = formName;
+    }
+
+    /**
+     * 设置表单id
+     */
+    public void setFormId(String formId) {
+        this.formId = formId;
+    }
+
+    /**
+     * 设置表单类型
+     */
+    public void setFormType(String formType) {
+        this.formType = formType;
+    }
+
+    /**
      * 表单类型
      */
     @ApiModelProperty("表单类型")
@@ -57,6 +92,20 @@ public class ProcessForm extends BaseEntity {
     @ApiModelProperty("表单属性")
     @TableField("`props`")
     private String props;
+
+    /**
+     * 设置表单属性
+     */
+    public void setProps(String props) {
+        this.props = props;
+    }
+
+    /**
+     * 设置租户id
+     */
+    public void setTenantId(String tenantId) {
+        this.tenantId = tenantId;
+    }
 
 
 

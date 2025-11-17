@@ -70,7 +70,6 @@ const font = reactive({
     <Sidebar class="sidebar-container" />
 
     <div :class="{ hasTagsView: showTagsView }" class="main-container">
-			<el-watermark :font="font" :zIndex="0" :content="['FlyFLow','飞驰工作流']">
 
       <div :class="{ 'fixed-header': fixedHeader }">
         <navbar />
@@ -84,7 +83,7 @@ const font = reactive({
       <RightPanel v-if="showSettings">
         <settings />
       </RightPanel>
-			</el-watermark>
+
     </div>
   </div>
 </template>

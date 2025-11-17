@@ -18,8 +18,14 @@ import java.util.List;
 @ApiModel(description = "选择组织对象数据")
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
 public class OrgSelectShowVo {
+
+    public OrgSelectShowVo(List<DeptDto> titleDepartments, List<OrgDataVo> roleList, List<OrgDataVo> childDepartments, List<OrgDataVo> employees) {
+        this.titleDepartments = titleDepartments;
+        this.roleList = roleList;
+        this.childDepartments = childDepartments;
+        this.employees = employees;
+    }
     /**
      * 头部标题显示
      */
@@ -40,4 +46,18 @@ public class OrgSelectShowVo {
      */
     @ApiModelProperty(value = "人员集合", position = 4)
     private List<OrgDataVo> employees;
+
+    public void setTitleDepartments(List<DeptDto> titleDepartments) {
+        this.titleDepartments = titleDepartments;
+    }
+
+    public void setChildDepartments(List<OrgDataVo> childDepartments) {
+        this.childDepartments = childDepartments;
+    }
+
+    public void setEmployees(List<OrgDataVo> employees) {
+        this.employees = employees;
+    }
+
+
 }

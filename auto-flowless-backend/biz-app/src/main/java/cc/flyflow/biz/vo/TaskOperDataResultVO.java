@@ -58,4 +58,68 @@ public class TaskOperDataResultVO {
     @ApiModelProperty(value = "是否需求签字", position = 8)
     private Boolean needSignature;
 
+    public String getProcessInstanceId() {
+        return processInstanceId;
+    }
+
+    public void setProcessInstanceId(String processInstanceId) {
+        this.processInstanceId = processInstanceId;
+    }
+
+    public String getNodeId() {
+        return nodeId;
+    }
+
+    public void setNodeId(String nodeId) {
+        this.nodeId = nodeId;
+    }
+
+    public Boolean getTaskExist() {
+        return taskExist;
+    }
+
+    public void setTaskExist(Boolean taskExist) {
+        this.taskExist = taskExist;
+    }
+
+    public Boolean getFrontJoinTask() {
+        return frontJoinTask;
+    }
+
+    public void setFrontJoinTask(Boolean frontJoinTask) {
+        this.frontJoinTask = frontJoinTask;
+    }
+
+    public List getOperList() {
+        return operList;
+    }
+
+    public void setOperList(List operList) {
+        this.operList = operList;
+    }
+
+    public Node getNode() {
+        return node;
+    }
+
+    public void setNode(Node node) {
+        this.node = node;
+    }
+
+    public Node getProcess() {
+        return process;
+    }
+
+    public void setProcess(Node process) {
+        this.process = process;
+    }
+
+    public Boolean getNeedSignature() {
+        return needSignature;
+    }
+
+    public void setNeedSignature(Boolean needSignature) {
+        this.needSignature = needSignature;
+    }
+
 }

@@ -62,4 +62,29 @@ public class QueryFormListParamVo {
      */
     @ApiModelProperty(value = "来源  现在有值就是start 表示来自发起", position = 9)
     private String from;
+
+    // 手动添加getter方法以确保编译通过
+    public String getFlowId() {
+        return flowId;
+    }
+
+    public String getTaskId() {
+        return taskId;
+    }
+
+    public String getProcessInstanceId() {
+        return processInstanceId;
+    }
+
+    public Long getCcId() {
+        return ccId;
+    }
+
+    public List<FormItemVO> getFormItemVOList() {
+        return formItemVOList;
+    }
+
+    public String getFrom() {
+        return from;
+    }
 }

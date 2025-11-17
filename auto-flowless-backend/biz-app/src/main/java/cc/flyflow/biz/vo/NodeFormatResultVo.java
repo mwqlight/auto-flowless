@@ -16,6 +16,9 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 public class NodeFormatResultVo {
+    public static NodeFormatResultVoBuilder builder() {
+        return new NodeFormatResultVoBuilder();
+    }
     /**
      * 节点集合
      */

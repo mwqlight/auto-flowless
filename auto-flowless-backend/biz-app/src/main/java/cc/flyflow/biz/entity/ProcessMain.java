@@ -20,9 +20,11 @@ import javax.validation.constraints.NotNull;
 @Accessors(chain = true)
 public class ProcessMain extends BaseEntity {
 
-
-
-
+    /**
+     * 唯一性ID
+     */
+    @TableField("`unique_id`")
+    private String uniqueId;
 
     /**
      * 表单名称
@@ -31,6 +33,35 @@ public class ProcessMain extends BaseEntity {
     @NotBlank(groups = {ValidGroup.Crud.Create.class},message = "表单名称不能为空")
     @TableField("`name`")
     private String name;
+
+    /**
+     * 获取唯一性ID
+     */
+    public String getUniqueId() {
+        return uniqueId;
+    }
+
+    /**
+     * 设置唯一性ID
+     */
+    public ProcessMain setUniqueId(String uniqueId) {
+        this.uniqueId = uniqueId;
+        return this;
+    }
+
+    /**
+     * 获取租户ID
+     */
+    public String getTenantId() {
+        return super.getTenantId();
+    }
+
+    /**
+     * 获取创建时间
+     */
+    public Date getCreateTime() {
+        return super.getCreateTime();
+    }
 
     /**
      * 图标配置
@@ -50,12 +81,26 @@ public class ProcessMain extends BaseEntity {
     @TableField("`group_id`")
     private Long groupId;
 
+    /**
+     * 获取分组ID
+     */
+    public Long getGroupId() {
+        return groupId;
+    }
+
 
 
 
     @ApiModelProperty(hidden = true)
     @TableField("`sort`")
     private Integer sort;
+
+    /**
+     * 获取排序值
+     */
+    public Integer getSort() {
+        return sort;
+    }
 
 
 
@@ -65,6 +110,38 @@ public class ProcessMain extends BaseEntity {
     @ApiModelProperty(value = "范围描述显示", position = 15)
     @TableField("`range_show`")
     private String rangeShow;
+
+    public String getRangeShow() {
+        return rangeShow;
+    }
+
+    public void setRangeShow(String rangeShow) {
+        this.rangeShow = rangeShow;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLogo() {
+        return logo;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
 
     /**
      * 唯一性id

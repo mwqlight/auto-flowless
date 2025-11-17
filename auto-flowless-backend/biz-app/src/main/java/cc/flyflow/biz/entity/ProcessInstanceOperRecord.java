@@ -18,6 +18,58 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class ProcessInstanceOperRecord extends BaseEntity {
 
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public void setProcessInstanceId(String processInstanceId) {
+        this.processInstanceId = processInstanceId;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public void setNodeId(String nodeId) {
+        this.nodeId = nodeId;
+    }
+
+    public void setNodeName(String nodeName) {
+        this.nodeName = nodeName;
+    }
+
+    public void setFlowId(String flowId) {
+        this.flowId = flowId;
+    }
+
+    public void setImageList(String imageList) {
+        this.imageList = imageList;
+    }
+
+    public void setFileList(String fileList) {
+        this.fileList = fileList;
+    }
+
+    public void setOperType(String operType) {
+        this.operType = operType;
+    }
+
+    public void setTenantId(String tenantId) {
+        this.tenantId = tenantId;
+    }
+
+    public void setOperDesc(String operDesc) {
+        this.operDesc = operDesc;
+    }
+
+    public String getFlowId() {
+        return flowId;
+    }
+
+    public String getTenantId() {
+        return tenantId;
+    }
+
 
 
     /**

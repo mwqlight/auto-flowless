@@ -12,7 +12,7 @@ import cc.flyflow.common.dto.ProcessInstanceNodeRecordParamDto;
 import cc.flyflow.common.dto.flow.Node;
 import cc.flyflow.common.dto.flow.node.GatewayNode;
 import cc.flyflow.common.utils.DateUtil;
-import cc.flyflow.common.utils.NodeUtil;
+import cc.flyflow.biz.utils.NodeUtil;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.extra.spring.SpringUtil;
@@ -76,13 +76,11 @@ public class NodeFormatUtil {
             //节点执行了
 
             IProcessInstanceNodeRecordService processNodeRecordService = SpringUtil.getBean(IProcessInstanceNodeRecordService.class);
-            List<ProcessInstanceNodeRecord> processNodeRecordList = processNodeRecordService.lambdaQuery()
-                    .eq(ProcessInstanceNodeRecord::getProcessInstanceId, processInstanceId)
-                    .eq(ProcessInstanceNodeRecord::getExecutionId, executionId)
-
-                    .in(ProcessInstanceNodeRecord::getNodeId,  cc.flyflow.biz.utils.NodeUtil.getFinalNodeIdList(node.getId()))
-
-                    .orderByDesc(ProcessInstanceNodeRecord::getCreateTime)
+            List<ProcessInstanceNodeRecord> processNodeRecordList = processNodeRecordService.query()
+                    .eq("process_instance_id", processInstanceId)
+                    .eq("execution_id", executionId)
+                    .in("node_id", NodeUtil.getFinalNodeIdList(node.getId()))
+                    .orderByDesc("create_time")
                     .list();
             processNodeRecord = processNodeRecordList.get(0);
 

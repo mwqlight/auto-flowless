@@ -19,6 +19,13 @@ public enum ProcessInstanceNodeRecordStatusEnum {
 
     private String name;
 
+    public int getCode() {
+        return code;
+    }
+
+    public String getName() {
+        return name;
+    }
 
     public static ProcessInstanceNodeRecordStatusEnum get(int code){
        return Arrays.stream(ProcessInstanceNodeRecordStatusEnum.values()).filter(w->w.getCode()==code).findAny().get();

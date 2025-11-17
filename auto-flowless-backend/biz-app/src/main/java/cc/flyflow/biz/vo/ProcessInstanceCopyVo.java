@@ -38,4 +38,40 @@ public class ProcessInstanceCopyVo extends ProcessInstanceCopy {
     @ApiModelProperty("发起时间显示")
     private String startTimeShow;
 
+    public void setRootUserName(String startUserName) {
+        this.startUserName = startUserName;
+    }
+
+    public void setStartUserAvatarUrl(String startUserAvatarUrl) {
+        this.startUserAvatarUrl = startUserAvatarUrl;
+    }
+
+    public void setFormValueShowList(List<Dict> formValueShowList) {
+        this.formValueShowList = formValueShowList;
+    }
+
+    public void setFormData(String formData) {
+        super.setFormData(formData);
+    }
+
+    public void setStartTimeShow(String startTimeShow) {
+        this.startTimeShow = startTimeShow;
+    }
+
+    public void setProcessInstanceResult(Integer processInstanceResult) {
+        this.processInstanceResult = processInstanceResult;
+    }
+
+    public void setProcessInstanceBizCode(String processInstanceBizCode) {
+        this.processInstanceBizCode = processInstanceBizCode;
+    }
+
+    public void setTaskAssignShow(String taskAssignShow) {
+        this.taskAssignShow = taskAssignShow;
+    }
+
+    public void setStartUserName(String startUserName) {
+        this.startUserName = startUserName;
+    }
+
 }

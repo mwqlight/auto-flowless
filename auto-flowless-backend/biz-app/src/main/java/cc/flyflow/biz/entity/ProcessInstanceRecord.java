@@ -19,9 +19,12 @@ import java.util.Date;
  */
 @ApiModel(description = "<p> 流程记录 </p>")
 @Getter
-@Setter
-@Accessors(chain = true)
-public class ProcessInstanceRecord  extends BaseEntity {
+    @Setter
+    @Accessors(chain = true)
+    public class ProcessInstanceRecord  extends BaseEntity {
+        public String getProcessInstanceBizKey() {
+            return processInstanceBizKey;
+        }
 
 
 
@@ -82,6 +85,28 @@ public class ProcessInstanceRecord  extends BaseEntity {
     @TableField("`process_instance_biz_code`")
     private String processInstanceBizCode;
 
+    public String getProcessInstanceBizCode() {
+        return processInstanceBizCode;
+    }
+
+    public void setProcessInstanceBizCode(String processInstanceBizCode) {
+        this.processInstanceBizCode = processInstanceBizCode;
+    }
+
+    /**
+     * 获取发起人的主部门id
+     */
+    public String getMainDeptId() {
+        return mainDeptId;
+    }
+
+    /**
+     * 设置发起人的主部门id
+     */
+    public void setMainDeptId(String mainDeptId) {
+        this.mainDeptId = mainDeptId;
+    }
+
     /**
      * 表单数据
      */
@@ -89,12 +114,125 @@ public class ProcessInstanceRecord  extends BaseEntity {
     @TableField("`form_data`")
     private String formData;
 
+    public String getFormData() {
+        return formData;
+    }
+
+    public void setFormData(String formData) {
+        this.formData = formData;
+    }
+
     /**
      * 组id
      */
     @ApiModelProperty("组id")
     @TableField("`group_id`")
     private Long groupId;
+
+    /**
+     * 组名称
+     */
+    // 手动添加getter方法以确保编译通过
+    public String getProcessInstanceId() {
+        return processInstanceId;
+    }
+
+    public void setProcessInstanceId(String processInstanceId) {
+        this.processInstanceId = processInstanceId;
+    }
+
+    public String getFlowId() {
+        return flowId;
+    }
+
+    public void setFlowId(String flowId) {
+        this.flowId = flowId;
+    }
+
+    public Long getTenantId() {
+        // 假设租户ID是BaseEntity的一部分，如果不是需要添加字段
+        return super.getTenantId();
+    }
+
+    public Long getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public Date getCreateTime() {
+        return super.getCreateTime();
+    }
+
+    public void setCreateTime(Date createTime) {
+        super.setCreateTime(createTime);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
+    public Integer getResult() {
+        return result;
+    }
+
+    public void setResult(Integer result) {
+        this.result = result;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public void setProcessInstanceBizKey(String processInstanceBizKey) {
+        this.processInstanceBizKey = processInstanceBizKey;
+    }
+
+    public void setProcess(String process) {
+        this.process = process;
+    }
+
+    public String getProcess() {
+        return process;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
 
     /**
      * 组名称

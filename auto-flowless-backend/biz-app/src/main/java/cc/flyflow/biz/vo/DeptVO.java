@@ -20,4 +20,15 @@ public class DeptVO extends Dept {
     @ApiModelProperty("部门主管")
     private List<NodeUser> leaderUser;
 
+    public List<NodeUser> getLeaderUser() {
+        return leaderUser;
+    }
+
+    public void setLeaderUser(List<NodeUser> leaderUser) {
+        this.leaderUser = leaderUser;
+    }
+
+    public Long getParentId() {
+        return super.getParentId();
+    }
 }

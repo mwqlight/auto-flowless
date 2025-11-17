@@ -19,6 +19,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CaptchaResult {
+    public static CaptchaResultBuilder builder() {
+        return new CaptchaResultBuilder();
+    }
     /**
      * 验证码关联key
      */

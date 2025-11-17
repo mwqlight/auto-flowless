@@ -94,5 +94,60 @@ public class ProcessInstanceCopy extends BaseEntity {
     @TableField("`user_id`")
     private String userId;
 
+    // 手动添加getter方法以确保编译通过
+    public String getFlowId() {
+        return flowId;
+    }
 
+    public String getFormData() {
+        return formData;
+    }
+
+    public String getNodeId() {
+        return nodeId;
+    }
+
+    public String getProcessInstanceId() {
+        return processInstanceId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public String getTenantId() {
+        return tenantId;
+    }
+
+    public Date getNodeTime() {
+        return nodeTime;
+    }
+
+    public String getStartUserId() {
+        return startUserId;
+    }
+
+    public void setFormData(String formData) {
+        this.formData = formData;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
+
+    public void setProcessName(String processName) {
+        this.processName = processName;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
 }

@@ -24,6 +24,17 @@ import java.util.Map;
  */
 public class NodeUtil {
 
+
+    /**
+     * 检查是否为节点
+     *
+     * @param node
+     * @return
+     */
+    public static boolean isNode(Node node) {
+        return node != null;
+    }
+
     /**
      * 处理节点添加执行id和流程唯一id
      *
@@ -34,7 +45,7 @@ public class NodeUtil {
     public static void handleNodeAddExecutionId(Node node, String nodeId, String executionId
     ) {
 
-        if (!cc.flyflow.common.utils.NodeUtil.isNode(node)) {
+        if (!isNode(node)) {
             return;
         }
 

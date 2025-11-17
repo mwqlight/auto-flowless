@@ -48,7 +48,43 @@ public class RouteBO {
     /**
      * 显示状态(1:显示;0:隐藏)
      */
-    private Integer visible;
+    private Boolean visible;
+
+    /**
+     * 排序
+     */
+    private Integer sort;
+
+    /**
+     * 角色ID
+     */
+    private String roleId;
+
+    /**
+     * 角色列表
+     */
+    private List<String> roles;
+
+    /**
+     * 获取菜单ID
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * 获取角色ID
+     */
+    public String getRoleId() {
+        return roleId;
+    }
+
+    /**
+     * 设置角色列表
+     */
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
+    }
 
     /**
      * 排序
