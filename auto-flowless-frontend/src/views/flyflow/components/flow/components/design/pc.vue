@@ -85,6 +85,45 @@ const showPanel = (form) => {
 	currentFormCom.value = form;
 }
 
+// 根据行分组表单元素
+const groupedFormElements = computed(() => {
+	const groups = [];
+	
+	// 先将所有元素按行号排序
+	const sortedElements = [...step2List.value].sort((a, b) => {
+		const rowA = a.layout?.row || 1;
+		const rowB = b.layout?.row || 1;
+		if (rowA !== rowB) {
+			return rowA - rowB;
+		}
+		// 同一行的元素按列号排序
+		const colA = a.layout?.col || 1;
+		const colB = b.layout?.col || 1;
+		return colA - colB;
+	});
+	
+	// 按行分组
+	let currentRow = null;
+	let currentRowNumber = null;
+	
+	sortedElements.forEach(element => {
+		const rowNumber = element.layout?.row || 1;
+		if (currentRowNumber !== rowNumber) {
+			currentRowNumber = rowNumber;
+			currentRow = [];
+			groups.push(currentRow);
+		}
+		currentRow.push(element);
+	});
+	
+	return groups;
+});
+
+// 获取元素在列表中的索引
+const getElementIndex = (id) => {
+	return step2List.value.findIndex(item => item.id === id);
+}
+
 var currentFormCom=computed({
 	get(){
 		return currentForm.value
@@ -106,47 +145,50 @@ var currentFormCom=computed({
 	>
 		<div class="drag-content-inner">
 
-
 			<el-form :label-position="'top'"    label-width="100px">
-				<draggable
-						disabled
-						v-model="targetList"
-						style="min-height: 600px;background-color: var(--el-bg-color-page)"
-						item-key="index"
-						:sort="true"
-						effect="dark"
-						:group="{ name: 'dragFormList', pull: true, put:true }"
-				>
-					<template #item="{ element, index }">
-						<div
-								class="okcomponent border line  " effect="dark"
-								:class="{'active-component':isCurrentForm(element.id)}"
-								@click.stop="showCurrentPageConfigPanel(element.id)"
-						>
+				<!-- 根据行分组渲染表单元素 -->
+				<template v-for="(row, rowIndex) in groupedFormElements" :key="'row-' + rowIndex">
+					<el-row :gutter="20" style="margin-bottom: 10px;">
+						<template v-for="element in row" :key="element.id">
+							<el-col
+								:span="element.layout?.span || 24"
+								:offset="element.layout?.offset || 0"
+							>
+								<div
+									class="okcomponent border line  " effect="dark"
+									:class="{'active-component':isCurrentForm(element.id)}"
+									@click.stop="showCurrentPageConfigPanel(element.id)"
+								>
 
-
-							<el-icon v-if="element.type!='Empty'" class="deleteIcon"
+									<el-icon v-if="element.type!='Empty'" class="deleteIcon"
 											 @click.stop="deleteForm(element.id)">
-								<Close/>
-							</el-icon>
+										<Close/>
+									</el-icon>
 
-								<el-form-item :label="step2Object[element.id]?.name"   :style="{marginBottom:(element.type==='Empty'?'0px':'18px')}"
-															:required="step2Object[element.id]?.required">
+									<el-form-item :label="step2Object[element.id]?.name"
+												:style="{marginBottom:(element.type==='Empty'?'0px':'18px')}"
+												:required="step2Object[element.id]?.required">
 
-									<component style="width: 100%"
-														 @showPanel="showPanel"
-														 :index="index"
-														 :is="getFormWidget(element.type)"
-														 :id="element.id"
-														 :from="1"
-														 v-model:form="step2Object[element.id]"
-									></component>
-								</el-form-item>
+										<component style="width: 100%"
+												@showPanel="showPanel"
+												:index="getElementIndex(element.id)"
+												:is="getFormWidget(element.type)"
+												:id="element.id"
+												:from="1"
+												v-model:form="step2Object[element.id]"
+										></component>
+									</el-form-item>
 
+								</div>
+							</el-col>
+						</template>
+					</el-row>
+				</template>
 
-						</div>
-					</template>
-				</draggable>
+				<!-- 如果没有任何表单元素，显示空提示 -->
+				<div v-if="groupedFormElements.length === 0" style="text-align: center; padding: 100px 0;">
+					暂无表单元素
+				</div>
 			</el-form>
 		</div>
 	</div>

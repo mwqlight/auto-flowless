@@ -97,13 +97,87 @@ const formGroupConfig: FormGroupVO[] = [
 				required: false,
 				printable: true,
 				props: {
-					defaultRoot:false,
-
-					radixNum: 0,
-					value:''
-
+					defaultRoot:false
 				}
-			}	,	{
+			}
+		]
+	},
+	// AI功能组件
+	{name: "AI功能",
+		formList: [
+			{
+				name: "AI聊天机器人",
+				type: "AIChat",
+				icon: "ChatDotRound",
+				typeName: "AI聊天机器人",
+				placeholder: "请输入你的问题",
+				required: false,
+				printable: true,
+				props: {
+					value: "",
+					model: "gpt-3.5-turbo",
+					temperature: 0.7
+				}
+			},
+			{
+				name: "AI智能客服",
+				type: "AIService",
+				icon: "Headphone",
+				typeName: "AI智能客服",
+				placeholder: "请描述你的问题",
+				required: false,
+				printable: true,
+				props: {
+					value: "",
+					serviceType: "customer_service"
+				}
+			},
+			{
+				name: "AI智能推荐",
+				type: "AIRecommend",
+				icon: "Star",
+				typeName: "AI智能推荐",
+				placeholder: "请输入推荐条件",
+				required: false,
+				printable: true,
+				props: {
+					value: "",
+					recommendType: "product"
+				}
+			},
+			{
+				name: "AI图片剪裁",
+				type: "AIImageCrop",
+				icon: "Picture",
+				typeName: "AI图片剪裁",
+				placeholder: "请上传图片",
+				required: false,
+				printable: true,
+				props: {
+					value: "",
+					aspectRatio: 1,
+					cropSize: "500x500"
+				}
+			},
+			{
+				name: "AI视频处理",
+				type: "AIVideoProcess",
+				icon: "VideoCamera",
+				typeName: "AI视频处理",
+				placeholder: "请上传视频",
+				required: false,
+				printable: true,
+				props: {
+					value: "",
+					processType: "transcode",
+					targetFormat: "mp4"
+				}
+			}
+		]
+	},
+	{name: "日期-时间",
+		formList: [
+			{
 				name: "日期时间",
 				type: "DateTime",
 				icon: "AlarmClock",

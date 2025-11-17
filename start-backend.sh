@@ -4,10 +4,10 @@
 # This script checks if the backend application is already running, stops it if necessary, and then starts it
 
 # Configuration
-PORT=8080
-BACKEND_DIR="/usr/local/share/github-space/auto-flowless-1/auto-flowless-backend"
-JAR_NAME="flyflow-web-*.jar"
-LOG_FILE="/usr/local/share/github-space/auto-flowless-1/backend.log"
+PORT=26859
+BACKEND_DIR="/usr/local/share/data-marked-space/auto-flowless/auto-flowless-backend"
+JAR_NAME="web.jar"
+LOG_FILE="/usr/local/share/data-marked-space/auto-flowless/backend.log"
 
 # Check if the application is already running
 PID=$(lsof -t -i:$PORT 2>/dev/null)
@@ -31,9 +31,14 @@ fi
 # Navigate to the backend directory
 cd $BACKEND_DIR
 
-# Build the application if the JAR file doesn't exist
-if ! ls $JAR_NAME 2>/dev/null; then
-    echo "Building the backend application..."
+# Set the JAR path to the target directory
+JAR_PATH="web/target/$JAR_NAME"
+
+# Check if the JAR file exists in the target directory
+if [ -f "$JAR_PATH" ]; then
+    echo "JAR file found in target directory. Using existing JAR file..."
+else
+    echo "JAR file not found in target directory. Building the backend application..."
     mvn clean package -DskipTests
     if [ $? -ne 0 ]; then
         echo "Build failed. Exiting..."
@@ -41,12 +46,12 @@ if ! ls $JAR_NAME 2>/dev/null; then
     fi
 fi
 
-# Start the application
+# Start the application with the correct JAR path
 echo "Starting backend application on port $PORT..."
-nohup java -jar $JAR_NAME --server.port=$PORT > $LOG_FILE 2>&1 &
+nohup java --add-exports=java.desktop/sun.font=ALL-UNNAMED -jar "$JAR_PATH" --server.port=$PORT --spring.config.location=classpath:/application.yml > $LOG_FILE 2>&1 &
 
 # Wait for the application to start
-sleep 10
+sleep 30
 
 # Check if the application is running
 PID=$(lsof -t -i:$PORT 2>/dev/null)

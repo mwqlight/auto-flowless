@@ -44,3 +44,14 @@ export function selectOptions(d): AxiosPromise {
         data: d
     });
 }
+
+/**
+ * AI生成表单
+ */
+export function aiGenerateForm(d): AxiosPromise {
+    return request({
+        url: '/form/aiGenerateForm',
+        method: 'post',
+        data: d
+    });
+}

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite serve --mode development",
-    "build:prod": "vite build --mode production &&vue-tsc --noEmit",
+    "build:prod": "vite build --mode production",
     "prepare": "husky install",
     "lint:eslint": "eslint  --fix --ext .ts,.js,.vue ./src ",
     "lint:prettier": "prettier --write \"**/*.{js,cjs,ts,json,tsx,css,less,scss,vue,html,md}\"",
