@@ -20,6 +20,9 @@ public enum NodeTypeEnum {
     PARALLEL_GATEWAY( "并行分支",5,true),
     EMPTY( "空",3,false),
     DELAY( "延时器",7,false),
+    SUBFLOW( "子流程",8,false),
+    ROUTER( "路由",9,false),
+    ASYNC_TRIGGER( "异步触发器",10,false),
 
     ;
 

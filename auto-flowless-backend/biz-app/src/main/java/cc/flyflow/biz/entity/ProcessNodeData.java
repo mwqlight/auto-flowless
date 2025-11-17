@@ -33,6 +33,36 @@ public class ProcessNodeData  extends BaseEntity {
     @TableField("`node_id`")
     private String nodeId;
 
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
+
+    public String getNodeId() {
+        return nodeId;
+    }
+
+    public void setNodeId(String nodeId) {
+        this.nodeId = nodeId;
+    }
+
+    public String getFlowId() {
+        return flowId;
+    }
+
+    public void setFlowId(String flowId) {
+        this.flowId = flowId;
+    }
+
+    /**
+     * 设置租户ID
+     */
+    public void setTenantId(String tenantId) {
+        super.setTenantId(tenantId);
+    }
 
 
 }

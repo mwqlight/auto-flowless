@@ -17,4 +17,11 @@ public class WebVersionVO {
     @ApiModelProperty( value = "版本号",required = true,example = "V2.0.1")
     private String versionNo;
 
+    /**
+     * 获取版本号
+     */
+    public String getVersionNo() {
+        return versionNo;
+    }
+
 }

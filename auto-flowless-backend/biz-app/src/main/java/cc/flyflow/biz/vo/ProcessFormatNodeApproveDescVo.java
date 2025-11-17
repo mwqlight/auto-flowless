@@ -76,4 +76,84 @@ public class ProcessFormatNodeApproveDescVo {
      */
     @ApiModelProperty(value = "签字的url", position = 10)
     private List<String> signUrlList;
+
+    // 手动添加getter方法以确保编译通过
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+        private String desc;
+        private String descType;
+        private Boolean sys;
+        private String descTypeStr;
+        private String showTimeStr;
+        private NodeFormatUserVo user;
+        private Date date;
+        private List<UploadValue> approveFileList;
+        private List<UploadValue> approveImageList;
+        private List<String> signUrlList;
+
+        public Builder desc(String desc) {
+            this.desc = desc;
+            return this;
+        }
+
+        public Builder descType(String descType) {
+            this.descType = descType;
+            return this;
+        }
+
+        public Builder sys(Boolean sys) {
+            this.sys = sys;
+            return this;
+        }
+
+        public Builder descTypeStr(String descTypeStr) {
+            this.descTypeStr = descTypeStr;
+            return this;
+        }
+
+        public Builder showTimeStr(String showTimeStr) {
+            this.showTimeStr = showTimeStr;
+            return this;
+        }
+
+        public Builder user(NodeFormatUserVo user) {
+            this.user = user;
+            return this;
+        }
+
+        public Builder date(Date date) {
+            this.date = date;
+            return this;
+        }
+
+        public Builder approveFileList(List<UploadValue> approveFileList) {
+            this.approveFileList = approveFileList;
+            return this;
+        }
+
+        public Builder approveImageList(List<UploadValue> approveImageList) {
+            this.approveImageList = approveImageList;
+            return this;
+        }
+
+        public Builder signUrlList(List<String> signUrlList) {
+            this.signUrlList = signUrlList;
+            return this;
+        }
+
+        public ProcessFormatNodeApproveDescVo build() {
+            return new ProcessFormatNodeApproveDescVo(desc, descType, sys, descTypeStr, showTimeStr, user, date, approveFileList, approveImageList, signUrlList);
+        }
+    }
 }

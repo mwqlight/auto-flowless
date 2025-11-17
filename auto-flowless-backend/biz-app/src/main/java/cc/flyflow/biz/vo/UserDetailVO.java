@@ -48,6 +48,18 @@ public class UserDetailVO extends UserDto {
      */
     @ApiModelProperty("扩展字段")
     private List<UserFieldDataVo> userFieldDataList;
+
+    public void setParentShow(List<NodeUser> parentShow) {
+        this.parentShow = parentShow;
+    }
+
+    public void setUserFieldDataList(List<UserFieldDataVo> userFieldDataList) {
+        this.userFieldDataList = userFieldDataList;
+    }
+
+    public void setRoleIds(List<String> roleIds) {
+        this.roleIds = roleIds;
+    }
     /**
      * 参数数据
      */

@@ -29,4 +29,22 @@ public class UserRole  extends BaseEntity {
      */
     @TableField("`role_id`")
     private String roleId;
+
+    // 手动添加setter方法以确保编译通过
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public void setRoleId(String roleId) {
+        this.roleId = roleId;
+    }
+
+    // 手动添加getter方法以确保编译通过
+    public String getUserId() {
+        return userId;
+    }
+
+    public String getRoleId() {
+        return roleId;
+    }
 }

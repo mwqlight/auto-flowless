@@ -20,4 +20,20 @@ public class FormRemoteSelectOptionParamVo {
 
     private Map<String,Object> paramMap;
 
+    // 手动添加getter方法以确保编译通过
+    public HttpSetting getHttpSetting() {
+        return httpSetting;
+    }
+
+    public Map<String, Object> getParamMap() {
+        return paramMap;
+    }
+
+    public String getFlowId() {
+        return flowId;
+    }
+
+    public String getProcessInstanceId() {
+        return processInstanceId;
+    }
 }

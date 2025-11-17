@@ -16,7 +16,6 @@ import java.util.Date;
  */
 @ApiModel(description = "节点用户")
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class NodeFormatUserVo {
@@ -69,4 +68,98 @@ public class NodeFormatUserVo {
     @ApiModelProperty(value = "状态 1进行中2已完成 {@link constants.cc.flyflow.biz.NodeFormatUserVoStatusEnum}", position = 9)
     private Integer status = 0;
 
+    // 静态内部类Builder
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public static class Builder {
+        private NodeFormatUserVo vo = new NodeFormatUserVo();
+
+        public Builder id(String id) {
+            vo.id = id;
+            return this;
+        }
+
+        public Builder name(String name) {
+            vo.name = name;
+            return this;
+        }
+
+        public Builder avatar(String avatar) {
+            vo.avatar = avatar;
+            return this;
+        }
+
+        public Builder status(Integer status) {
+            vo.status = status;
+            return this;
+        }
+
+        public Builder showTime(Date showTime) {
+            vo.showTime = showTime;
+            return this;
+        }
+
+        public Builder showTimeStr(String showTimeStr) {
+            vo.showTimeStr = showTimeStr;
+            return this;
+        }
+
+        public Builder operType(String operType) {
+            vo.operType = operType;
+            return this;
+        }
+
+        public Builder signUrl(String signUrl) {
+            vo.signUrl = signUrl;
+            return this;
+        }
+
+        public Builder signContractResult(Boolean signContractResult) {
+            vo.signContractResult = signContractResult;
+            return this;
+        }
+
+        public NodeFormatUserVo build() {
+            return vo;
+        }
+    }
+
+    // 手动添加setter方法以确保编译通过
+    public void setShowTime(Date showTime) {
+        this.showTime = showTime;
+    }
+
+    public void setShowTimeStr(String showTimeStr) {
+        this.showTimeStr = showTimeStr;
+    }
+
+    public Date getShowTime() {
+        return showTime;
+    }
+
+    public String getShowTimeStr() {
+        return showTimeStr;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public String getOperType() {
+        return operType;
+    }
+
+    public void setOperType(String operType) {
+        this.operType = operType;
+    }
+
+    public String getId() {
+        return id;
+    }
 }

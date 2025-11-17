@@ -24,6 +24,14 @@ public class Dept  extends BaseEntity {
     @TableField("`name`")
     private String name;
 
+    public String getName() {
+        return name;
+    }
+
+    public String getId() {
+        return super.getId();
+    }
+
     /**
      * 上级部门id
      */
@@ -38,4 +46,6 @@ public class Dept  extends BaseEntity {
     private Integer status;
     @TableField("`sort`")
     private Integer sort;
+
+
 }

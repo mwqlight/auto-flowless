@@ -112,11 +112,10 @@ public class CombinationGroupServiceImpl implements ICombinationGroupService {
                 .orderByDesc(ProcessGroup::getSort).list();
 
         processGroupList.forEach(group -> {
-            FormGroupVo formGroupVo = FormGroupVo.builder()
-                    .id((group.getId()))
-                    .name(group.getGroupName())
-                    .items(new LinkedList<>())
-                    .build();
+            FormGroupVo formGroupVo = new FormGroupVo();
+            formGroupVo.setId(group.getId());
+            formGroupVo.setName(group.getGroupName());
+            formGroupVo.setItems(new LinkedList<>());
             formGroupVos.add(formGroupVo);
 
             List<Process> processList = processService.lambdaQuery()
@@ -129,16 +128,16 @@ public class CombinationGroupServiceImpl implements ICombinationGroupService {
             processList.forEach(process -> {
 
 
-                formGroupVo.getItems().add(FormGroupVo.FlowVo.builder()
-                        .flowId(process.getFlowId())
-                        .rangeShow(process.getRangeShow())
-                        .name(process.getName())
-                        .logo(process.getLogo())
-                        .remark(process.getRemark())
-                        .stop(process.getStop())
-                        .uniqueId(process.getUniqueId())
-                        .updated(process.getUpdateTime())
-                        .build());
+                FormGroupVo.FlowVo flowVo = new FormGroupVo.FlowVo();
+                flowVo.setFlowId(process.getFlowId());
+                flowVo.setRangeShow(process.getRangeShow());
+                flowVo.setName(process.getName());
+                flowVo.setLogo(process.getLogo());
+                flowVo.setRemark(process.getRemark());
+                flowVo.setStop(process.getStop());
+                flowVo.setUniqueId(process.getUniqueId());
+                flowVo.setUpdated(process.getUpdateTime());
+                formGroupVo.getItems().add(flowVo);
             });
         });
         return R.success(formGroupVos);
@@ -160,11 +159,10 @@ public class CombinationGroupServiceImpl implements ICombinationGroupService {
                 .orderByDesc(ProcessGroup::getSort).list();
 
         processGroupList.forEach(group -> {
-            FormGroupVo formGroupVo = FormGroupVo.builder()
-                    .id((group.getId()))
-                    .name(group.getGroupName())
-                    .items(new LinkedList<>())
-                    .build();
+            FormGroupVo formGroupVo = new FormGroupVo();
+            formGroupVo.setId(group.getId());
+            formGroupVo.setName(group.getGroupName());
+            formGroupVo.setItems(new LinkedList<>());
             formGroupVos.add(formGroupVo);
 
             List<ProcessMain> processMainList = processMainService.lambdaQuery()
@@ -192,18 +190,18 @@ public class CombinationGroupServiceImpl implements ICombinationGroupService {
                 Boolean reportEnable = false;
 
 
-                formGroupVo.getItems().add(FormGroupVo.FlowVo.builder()
-                        .flowId(process.getFlowId())
-                        .uniqueId(process.getUniqueId())
-                        .rangeShow(processMain.getRangeShow())
-                        .name(processMain.getName())
-                        .remark(process.getRemark())
-                        .logo(processMain.getLogo())
-                        .reportEnable(reportEnable)
-                        .stop(process.getStop())
-                        .uniqueId(processMain.getUniqueId())
-                        .updated(processMain.getUpdateTime())
-                        .build());
+                FormGroupVo.FlowVo flowVo = new FormGroupVo.FlowVo();
+                flowVo.setFlowId(process.getFlowId());
+                flowVo.setUniqueId(process.getUniqueId());
+                flowVo.setRangeShow(processMain.getRangeShow());
+                flowVo.setName(processMain.getName());
+                flowVo.setRemark(process.getRemark());
+                flowVo.setLogo(processMain.getLogo());
+                flowVo.setReportEnable(reportEnable);
+                flowVo.setStop(process.getStop());
+                flowVo.setUniqueId(processMain.getUniqueId());
+                flowVo.setUpdated(processMain.getUpdateTime());
+                formGroupVo.getItems().add(flowVo);
             });
         });
         return R.success(formGroupVos);
@@ -245,18 +243,17 @@ public class CombinationGroupServiceImpl implements ICombinationGroupService {
 
 
 
-            FormGroupVo.FlowVo flowVo = FormGroupVo.FlowVo.builder()
-                    .flowId(process.getFlowId())
-                    .uniqueId(process.getUniqueId())
-                    .rangeShow(processMain.getRangeShow())
-                    .name(processMain.getName())
-                    .remark(process.getRemark())
-                    .logo(processMain.getLogo())
-                    .reportEnable(false)
-                    .stop(process.getStop())
-                    .uniqueId(processMain.getUniqueId())
-                    .updated(processMain.getUpdateTime())
-                    .build();
+            FormGroupVo.FlowVo flowVo = new FormGroupVo.FlowVo();
+            flowVo.setFlowId(process.getFlowId());
+            flowVo.setUniqueId(process.getUniqueId());
+            flowVo.setRangeShow(processMain.getRangeShow());
+            flowVo.setName(processMain.getName());
+            flowVo.setRemark(process.getRemark());
+            flowVo.setLogo(processMain.getLogo());
+            flowVo.setReportEnable(false);
+            flowVo.setStop(process.getStop());
+            flowVo.setUniqueId(processMain.getUniqueId());
+            flowVo.setUpdated(processMain.getUpdateTime());
 
             flowVoList.add(flowVo);
         }
@@ -284,11 +281,10 @@ public class CombinationGroupServiceImpl implements ICombinationGroupService {
                 .orderByDesc(ProcessGroup::getSort).list();
 
         processGroupList.forEach(group -> {
-            FormGroupVo formGroupVo = FormGroupVo.builder()
-                    .id((group.getId()))
-                    .name(group.getGroupName())
-                    .items(new LinkedList<>())
-                    .build();
+            FormGroupVo formGroupVo = new FormGroupVo();
+            formGroupVo.setId(group.getId());
+            formGroupVo.setName(group.getGroupName());
+            formGroupVo.setItems(new LinkedList<>());
             formGroupVos.add(formGroupVo);
 
             List<Process> processList = processService.lambdaQuery()
@@ -298,26 +294,26 @@ public class CombinationGroupServiceImpl implements ICombinationGroupService {
                     .eq(Process::getStop, false)
                     .orderByAsc(Process::getSort).list();
 
-            Map<Long, Boolean> existMap = new HashMap<>();
+            Map<String, Boolean> existMap = new HashMap<>();
 
             if (!processList.isEmpty()) {
-                List<Long> idList = processList.stream().map(w -> w.getId()).collect(Collectors.toList());
+                List<String> idList = processList.stream().map(w -> String.valueOf(w.getId())).collect(Collectors.toList());
                 //查询发起人集合
                 List<ProcessStarter> processStarterList = processStarterService.lambdaQuery()
                         .eq(ProcessStarter::getTenantId, TenantUtil.get())
                         .in(ProcessStarter::getProcessId, idList).list();
-                Map<Long, List<ProcessStarter>> groupmap = processStarterList.stream().collect(Collectors.groupingBy(ProcessStarter::getProcessId));
+                Map<String, List<ProcessStarter>> groupmap = processStarterList.stream().collect(Collectors.groupingBy(ProcessStarter::getProcessId));
 
                 for (Process process : processList) {
                     List<ProcessStarter> processStarters = groupmap.get(process.getId());
                     if (processStarters == null) {
-                        existMap.put(process.getId(), true);
+                        existMap.put(String.valueOf(process.getId()), true);
                         continue;
                     }
                     boolean match =
                             processStarters.stream().anyMatch(w -> w.getTypeId().equals(userId) && w.getType().equals(NodeUserTypeEnum.USER.getKey()));
                     if (match) {
-                        existMap.put(process.getId(), true);
+                        existMap.put(String.valueOf(process.getId()), true);
                         continue;
                     }
                     Set<String> deptIdSet = new HashSet<>();
@@ -344,7 +340,7 @@ public class CombinationGroupServiceImpl implements ICombinationGroupService {
 
                     //判断部门交集
                     List<String> userDeptIdList = user.getDeptIdList();
-                    existMap.put(process.getId(), !CollUtil.intersection(userDeptIdList, deptIdSet).isEmpty());
+                    existMap.put(String.valueOf(process.getId()), !CollUtil.intersection(userDeptIdList, deptIdSet).isEmpty());
 
 
                 }
@@ -358,15 +354,15 @@ public class CombinationGroupServiceImpl implements ICombinationGroupService {
                     return;
                 }
 
-                formGroupVo.getItems().add(FormGroupVo.FlowVo.builder()
-                        .flowId(process.getFlowId())
-                        .uniqueId(process.getUniqueId())
-                        .name(process.getName())
-                        .logo(process.getLogo())
-                        .remark(process.getRemark())
-                        .stop(process.getStop())
-                        .updated(process.getUpdateTime())
-                        .build());
+                FormGroupVo.FlowVo flowVo = new FormGroupVo.FlowVo();
+                flowVo.setFlowId(process.getFlowId());
+                flowVo.setUniqueId(process.getUniqueId());
+                flowVo.setName(process.getName());
+                flowVo.setLogo(process.getLogo());
+                flowVo.setRemark(process.getRemark());
+                flowVo.setStop(process.getStop());
+                flowVo.setUpdated(process.getUpdateTime());
+                formGroupVo.getItems().add(flowVo);
             });
         });
         return R.success(formGroupVos);
@@ -412,7 +408,7 @@ public class CombinationGroupServiceImpl implements ICombinationGroupService {
             return R.success();
         }
         List<String> flowIdList = processList.stream().map(Process::getFlowId).collect(Collectors.toList());
-        List<Long> processIdList = processList.stream().map(BaseEntity::getId).collect(Collectors.toList());
+        List<Long> processIdList = processList.stream().map(Process::getId).collect(Collectors.toList());
 
 
         Map<String, IClearService> serviceMap = SpringUtil.getBeansOfType(IClearService.class);

@@ -15,7 +15,13 @@ import lombok.experimental.Accessors;
 @Setter
 @Accessors(chain = true)
 public class DeptLeader extends BaseEntity {
+    public void setDeptId(String deptId) {
+        this.deptId = deptId;
+    }
 
+    public String getDeptId() {
+        return deptId;
+    }
 
     /**
      * 部门id
@@ -23,6 +29,9 @@ public class DeptLeader extends BaseEntity {
     @TableField("`dept_id`")
     private String  deptId;
 
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     /**
      * 主管user_id

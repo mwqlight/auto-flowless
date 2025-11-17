@@ -58,5 +58,35 @@ public class CaptchaConfig {
      */
     private int fontSize = 20;
 
+    public long getTtl() {
+        return ttl;
+    }
 
+    public CaptchaTypeEnum getType() {
+        return type;
+    }
+
+    public int getLength() {
+        return length;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public String getFontName() {
+        return fontName;
+    }
+
+    public Integer getFontStyle() {
+        return fontStyle;
+    }
+
+    public int getFontSize() {
+        return fontSize;
+    }
 }

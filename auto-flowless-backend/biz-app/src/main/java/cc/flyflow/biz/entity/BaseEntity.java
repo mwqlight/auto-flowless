@@ -15,14 +15,14 @@ public class BaseEntity {
      */
     @ApiModelProperty("租户id")
     @TableField("`tenant_id`")
-    private String tenantId;
+    protected String tenantId;
 
     /**
      * 用户id
      */
     @ApiModelProperty("用户id")
     @TableId(value = "id", type = IdType.ASSIGN_ID)
-    private Long id;
+    protected String id;
 
     /**
      * 逻辑删除字段

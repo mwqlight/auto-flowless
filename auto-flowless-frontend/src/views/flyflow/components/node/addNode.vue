@@ -52,6 +52,36 @@
 						<p>延时器</p>
 					</a>
 
+					<a class="add-node-popover-item  " @click="addType(8)">
+            <div class="item-wrapper" :style="{color:'rgb('+(bgColors[8])+')'}">
+
+            <i class="icon icon-icon_subflow iconfont"></i>
+
+
+						</div>
+						<p>子流程</p>
+					</a>
+
+					<a class="add-node-popover-item  " @click="addType(9)">
+            <div class="item-wrapper" :style="{color:'rgb('+(bgColors[9])+')'}">
+
+            <i class="icon icon-icon_router iconfont"></i>
+
+
+						</div>
+						<p>路由</p>
+					</a>
+
+					<a class="add-node-popover-item  " @click="addType(10)">
+            <div class="item-wrapper" :style="{color:'rgb('+(bgColors[10])+')'}">
+
+            <i class="icon icon-icon_async iconfont"></i>
+
+
+						</div>
+						<p>异步触发器</p>
+					</a>
+
 
 
 

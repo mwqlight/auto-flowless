@@ -59,5 +59,68 @@ public class TaskHeaderShowResultVO {
     @ApiModelProperty(value = "流程业务编码", position = 8)
     private String processInstanceBizCode;
 
+    public String getProcessInstanceId() {
+        return processInstanceId;
+    }
+
+    public void setProcessInstanceId(String processInstanceId) {
+        this.processInstanceId = processInstanceId;
+    }
+
+    public String getStarterName() {
+        return starterName;
+    }
+
+    public void setStarterName(String starterName) {
+        this.starterName = starterName;
+    }
+
+    public String getStarterAvatarUrl() {
+        return starterAvatarUrl;
+    }
+
+    public void setStarterAvatarUrl(String starterAvatarUrl) {
+        this.starterAvatarUrl = starterAvatarUrl;
+    }
+
+    public String getProcessName() {
+        return processName;
+    }
+
+    public void setProcessName(String processName) {
+        this.processName = processName;
+    }
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Integer getProcessInstanceResult() {
+        return processInstanceResult;
+    }
+
+    public void setProcessInstanceResult(Integer processInstanceResult) {
+        this.processInstanceResult = processInstanceResult;
+    }
+
+    public String getProcessInstanceBizKey() {
+        return processInstanceBizKey;
+    }
+
+    public void setProcessInstanceBizKey(String processInstanceBizKey) {
+        this.processInstanceBizKey = processInstanceBizKey;
+    }
+
+    public String getProcessInstanceBizCode() {
+        return processInstanceBizCode;
+    }
+
+    public void setProcessInstanceBizCode(String processInstanceBizCode) {
+        this.processInstanceBizCode = processInstanceBizCode;
+    }
 
 }

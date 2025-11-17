@@ -7,7 +7,7 @@
 import {ref} from 'vue'
 import * as util from "../utils/objutil.js";
 export let bgColors = ['87, 106, 149', '255, 148, 62', '50, 150, 250','','21,188,131','255,69,0','0,116,217','177,13,201',"106, 90, 205","153,102,51","153,153,0","102,51,153","51,51,102"]
-export let placeholderList = ["发起人", "审批人", "抄送人",'','','','触发器','延时器',"","子流程","路由","异步触发器","签署合同"];
+export let placeholderList = ["发起人", "审批人", "抄送人",'','','','触发器','延时器',"","子流程","路由","异步触发器","签署合同","新节点"];
 
 
 export let nodeData=[{
@@ -35,16 +35,56 @@ export let nodeData=[{
 		]
 	},
 	"operList": [
-		{
-			"key": "pass",
-			"checked": true,
-			"edit": false,
-			"name": "提交",
-			"type":"primary",
-			"defaultName": "提交"
+			{
+				"key": "pass",
+				"checked": true,
+				"edit": false,
+				"name": "提交",
+				"type":"primary",
+				"defaultName": "提交"
+			}
+		]
+	},
+	{   //子流程
+		"id": util.getRandomId(),
+		"error": false,
+		"type": 8,
+		"nodeName": placeholderList[9],
+		"formPerms": {},
+		"nodeUserList": [],
+		"childNode": {},
+		"subflowConfig": {
+			"flowId": "",
+			"paramMap": []
 		}
-	]
-},
+	},
+	{   //路由
+		"id": util.getRandomId(),
+		"error": false,
+		"type": 9,
+		"nodeName": placeholderList[10],
+		"formPerms": {},
+		"nodeUserList": [],
+		"childNode": {},
+		"routerConfig": {
+			"type": "",
+			"config": []
+		}
+	},
+	{   //异步触发器
+		"id": util.getRandomId(),
+		"error": false,
+		"type": 10,
+		"nodeName": placeholderList[11],
+		"formPerms": {},
+		"nodeUserList": [],
+		"childNode": {},
+		"asyncConfig": {
+			"type": "",
+			"url": "",
+			"param": []
+		}
+	},
 	{
 		//审批人
 		"id": util.getRandomId(),

@@ -72,5 +72,34 @@ public class UserBizVO extends User {
     @ApiModelProperty("角色id集合")
     private List<String> roleIds;
 
+    // 手动添加setPy方法以确保编译通过
+    public void setPy(String py) {
+        super.setPy(py);
+    }
+
+    // 手动添加setPinyin方法以确保编译通过
+    public void setPinyin(String pinyin) {
+        super.setPinyin(pinyin);
+    }
+
+    // 手动添加getRoleIds方法以确保编译通过
+    public List<String> getRoleIds() {
+        return roleIds;
+    }
+
+    // 手动添加getParentId方法以确保编译通过
+    public Long getParentId() {
+        return super.getParentId();
+    }
+
+    // 手动添加getPhone方法以确保编译通过
+    public String getPhone() {
+        return super.getPhone();
+    }
+
+    // 手动添加getDeptIdList方法以确保编译通过
+    public List<String> getDeptIdList() {
+        return deptIdList;
+    }
 
 }

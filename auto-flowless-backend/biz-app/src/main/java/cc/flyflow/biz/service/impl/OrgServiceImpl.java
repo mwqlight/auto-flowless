@@ -92,7 +92,12 @@ public class OrgServiceImpl implements IOrgService {
             return R.success(orgSelectShowVo);
 
         }
-        OrgSelectShowVo orgSelectShowVo = new OrgSelectShowVo(new ArrayList<>(),new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
+        OrgSelectShowVo orgSelectShowVo = new OrgSelectShowVo(
+                new ArrayList<DeptDto>(),
+                new ArrayList<OrgDataVo>(),
+                new ArrayList<OrgDataVo>(),
+                new ArrayList<OrgDataVo>()
+        );
 
 
 
@@ -271,7 +276,7 @@ public class OrgServiceImpl implements IOrgService {
      */
     @Override
     public R delete(Dept dept) {
-        long id = dept.getId();
+        String id = dept.getId();
 
         List<DeptDto> allDept = ApiStrategyFactory.getStrategy().loadAllDept(null);
         List<DeptDto> deptList = DataUtil.selectChildrenByDept(String.valueOf(id), allDept);

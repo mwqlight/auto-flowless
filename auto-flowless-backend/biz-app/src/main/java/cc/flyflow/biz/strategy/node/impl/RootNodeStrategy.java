@@ -12,12 +12,16 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.stereotype.Component;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.List;
 import java.util.Map;
 
 @Component
 @Slf4j
 public class RootNodeStrategy implements NodeStrategy, InitializingBean {
+    private static final Logger log = LoggerFactory.getLogger(RootNodeStrategy.class);
     @Override
     public void afterPropertiesSet() throws Exception {
         afterPropertiesSet(NodeTypeEnum.ROOT.getValue());
@@ -38,5 +42,13 @@ public class RootNodeStrategy implements NodeStrategy, InitializingBean {
             buildApproveDesc(node, processInstanceId, nodeVo, nodeFormatUserVoList);
 
         }
+    }
+
+    @Override
+    public void buildProcessNodeList(cc.flyflow.core.dto.vo.UserTaskVO userTask, List<cc.flyflow.biz.dto.req.NodeUserReqDTO> nodeUserList) {
+        // 根节点处理逻辑
+        log.info("RootNodeStrategy buildProcessNodeList start, userTask:{}, nodeUserList:{}", userTask, nodeUserList);
+        // TODO: 实现根节点的具体逻辑
+        log.info("RootNodeStrategy buildProcessNodeList end");
     }
 }

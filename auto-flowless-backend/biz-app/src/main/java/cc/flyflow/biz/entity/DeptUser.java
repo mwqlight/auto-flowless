@@ -31,4 +31,21 @@ public class DeptUser extends BaseEntity {
     @TableField("`user_id`")
     private String userId;
 
+    // 手动添加setter方法以确保编译通过
+    public void setDeptId(String deptId) {
+        this.deptId = deptId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    // 手动添加getter方法以确保编译通过
+    public String getDeptId() {
+        return deptId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
 }

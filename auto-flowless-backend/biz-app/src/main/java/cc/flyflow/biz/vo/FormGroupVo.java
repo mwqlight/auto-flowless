@@ -23,7 +23,7 @@ public class FormGroupVo {
      * id
      */
     @ApiModelProperty("id")
-    private Long id;
+    private String id;
     /**
      * 名字
      */
@@ -35,6 +35,22 @@ public class FormGroupVo {
      */
     @ApiModelProperty("流程")
     private List<FlowVo> items;
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setItems(List<FlowVo> items) {
+        this.items = items;
+    }
+
+    public List<FlowVo> getItems() {
+        return items;
+    }
 
     /**
      * 流程对象
@@ -91,6 +107,42 @@ public class FormGroupVo {
          */
         @ApiModelProperty("流程唯一id")
         private String uniqueId;
+
+        public void setFlowId(String flowId) {
+            this.flowId = flowId;
+        }
+
+        public void setRangeShow(String rangeShow) {
+            this.rangeShow = rangeShow;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public void setLogo(String logo) {
+            this.logo = logo;
+        }
+
+        public void setStop(Boolean stop) {
+            this.stop = stop;
+        }
+
+        public void setRemark(String remark) {
+            this.remark = remark;
+        }
+
+        public void setUpdated(Date updated) {
+            this.updated = updated;
+        }
+
+        public void setUniqueId(String uniqueId) {
+            this.uniqueId = uniqueId;
+        }
+
+        public void setReportEnable(Boolean reportEnable) {
+            this.reportEnable = reportEnable;
+        }
     }
 
 

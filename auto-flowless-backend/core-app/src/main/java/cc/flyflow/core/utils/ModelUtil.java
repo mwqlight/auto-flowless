@@ -358,6 +358,18 @@ public class ModelUtil {
 
             flowElementList.addAll(buildParallelGatewayNode(node));
         }
+        //子流程
+        if (node.getType() == NodeTypeEnum.SUBFLOW.getValue().intValue()) {
+            flowElementList.add(buildSubflowNode(node));
+        }
+        //路由
+        if (node.getType() == NodeTypeEnum.ROUTER.getValue().intValue()) {
+            flowElementList.add(buildRouterNode(node));
+        }
+        //异步触发器
+        if (node.getType() == NodeTypeEnum.ASYNC_TRIGGER.getValue().intValue()) {
+            flowElementList.add(buildAsyncTriggerNode(node));
+        }
 
         return flowElementList;
     }
@@ -712,6 +724,55 @@ public class ModelUtil {
         serviceTask.setAsynchronous(false);
         serviceTask.setImplementationType("class");
         serviceTask.setImplementation(CopyServiceTask.class.getCanonicalName());
+        return serviceTask;
+    }
+
+    /**
+     * 创建子流程节点
+     *
+     * @param node
+     * @return
+     */
+    private static FlowElement buildSubflowNode(Node node) {
+        CallActivity callActivity = new CallActivity();
+        callActivity.setId(node.getId());
+        callActivity.setName(node.getNodeName());
+        // 这里需要根据实际情况设置子流程引用
+        // callActivity.setCalledElement(subflowKey);
+        return callActivity;
+    }
+
+    /**
+     * 创建路由节点
+     *
+     * @param node
+     * @return
+     */
+    private static FlowElement buildRouterNode(Node node) {
+        ServiceTask serviceTask = new ServiceTask();
+        serviceTask.setId(node.getId());
+        serviceTask.setName(node.getNodeName());
+        serviceTask.setAsynchronous(false);
+        serviceTask.setImplementationType("class");
+        // 这里需要设置路由处理类
+        // serviceTask.setImplementation(RouterServiceTask.class.getCanonicalName());
+        return serviceTask;
+    }
+
+    /**
+     * 创建异步触发器节点
+     *
+     * @param node
+     * @return
+     */
+    private static FlowElement buildAsyncTriggerNode(Node node) {
+        ServiceTask serviceTask = new ServiceTask();
+        serviceTask.setId(node.getId());
+        serviceTask.setName(node.getNodeName());
+        serviceTask.setAsynchronous(true);
+        serviceTask.setImplementationType("class");
+        // 这里需要设置异步触发处理类
+        // serviceTask.setImplementation(AsyncTriggerServiceTask.class.getCanonicalName());
         return serviceTask;
     }
 

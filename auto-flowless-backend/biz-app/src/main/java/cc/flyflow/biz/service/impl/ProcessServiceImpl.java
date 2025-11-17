@@ -386,7 +386,7 @@ public class ProcessServiceImpl extends ServiceImpl<ProcessMapper, Process> impl
                 ProcessStarter processStarter = new ProcessStarter();
                 processStarter.setTenantId(TenantUtil.get());
                 processStarter.setContainChildrenDept(nodeUserDto.getContainChildrenDept());
-                processStarter.setProcessId(p.getId());
+                processStarter.setProcessId(p.getId().toString());
                 processStarter.setFlowId(p.getFlowId());
                 processStarter.setTypeId((nodeUserDto.getId()));
                 processStarter.setType(nodeUserDto.getType());

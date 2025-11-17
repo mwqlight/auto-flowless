@@ -84,4 +84,131 @@ public class Menu  extends BaseEntity {
     @TableField("`redirect`")
     private String redirect;
 
+    /**
+     * 获取菜单ID
+     */
+    public Long getId() {
+        return id;
+    }
+
+    /**
+     * 设置菜单ID
+     */
+    public Menu setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    /**
+     * 获取菜单名称
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * 获取路由路径
+     */
+    public String getPath() {
+        return path;
+    }
+
+    /**
+     * 获取组件路径
+     */
+    public String getComponent() {
+        return component;
+    }
+
+    /**
+     * 获取菜单图标
+     */
+    public String getIcon() {
+        return icon;
+    }
+
+    /**
+     * 获取父菜单ID
+     */
+    public Long getParentId() {
+        return parentId;
+    }
+
+    /**
+     * 设置父菜单ID
+     */
+    public Menu setParentId(Long parentId) {
+        this.parentId = parentId;
+        return this;
+    }
+
+    /**
+     * 获取显示状态
+     */
+    public Boolean getVisible() {
+        return visible;
+    }
+
+    /**
+     * 获取跳转路径
+     */
+    public String getRedirect() {
+        return redirect;
+    }
+
+    /**
+     * 获取菜单类型
+     */
+    public Integer getType() {
+        return type;
+    }
+
+    /**
+     * 获取排序
+     */
+    public Integer getSort() {
+        return sort;
+    }
+
+    /**
+     * 获取权限标识
+     */
+    public String getPerm() {
+        return perm;
+    }
+
+    /**
+     * 设置路由路径
+     */
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    /**
+     * 设置组件路径
+     */
+    public void setComponent(String component) {
+        this.component = component;
+    }
+
+    /**
+     * 设置父节点ID路径
+     */
+    public void setTreePath(String treePath) {
+        this.treePath = treePath;
+    }
+
+    /**
+     * 获取父节点ID路径
+     */
+    public String getTreePath() {
+        return treePath;
+    }
+
+    /**
+     * 设置菜单类型
+     */
+    public void setType(MenuTypeEnum type) {
+        this.type = type;
+    }
 }

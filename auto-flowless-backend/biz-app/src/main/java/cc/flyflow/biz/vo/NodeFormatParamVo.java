@@ -43,4 +43,46 @@ public class NodeFormatParamVo {
     @ApiModelProperty(value = "参数集合", position = 6)
     private Map<String,Object> paramMap;
 
+    public String getTaskId() {
+        return taskId;
+    }
+
+    public String getCcId() {
+        return ccId;
+    }
+
+    /**
+     * 获取流程id
+     */
+    public String getFlowId() {
+        return flowId;
+    }
+
+    /**
+     * 获取流程实例id
+     */
+    public String getProcessInstanceId() {
+        return processInstanceId;
+    }
+
+    public void setTaskId(String taskId) {
+        this.taskId = taskId;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public Map<String, Object> getParamMap() {
+        return paramMap;
+    }
+
+    public void setParamMap(Map<String, Object> paramMap) {
+        this.paramMap = paramMap;
+    }
+
 }

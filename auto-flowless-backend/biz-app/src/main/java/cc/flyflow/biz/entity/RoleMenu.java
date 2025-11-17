@@ -30,4 +30,18 @@ public class RoleMenu  extends BaseEntity {
     @TableField("`menu_id`")
     private Long menuId;
 
+    /**
+     * 获取角色ID
+     */
+    public String getRoleId() {
+        return roleId;
+    }
+
+    /**
+     * 获取菜单ID
+     */
+    public Long getMenuId() {
+        return menuId;
+    }
+
 }

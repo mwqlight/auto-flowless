@@ -67,4 +67,52 @@ public class User  extends BaseEntity {
     private String phone;
     @TableField("`status`")
     private Integer status;
+
+    // 手动添加getter方法以确保编译通过
+    public String getPassword() {
+        return password;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public Long getId() {
+        // User类继承自BaseEntity，所以应该调用super.getId()
+        return super.getId();
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public Long getParentId() {
+        return parentId;
+    }
+
+    public void setPinyin(String pinyin) {
+        this.pinyin = pinyin;
+    }
+
+    @Override
+    public Date getCreateTime() {
+        return super.getCreateTime();
+    }
+
 }

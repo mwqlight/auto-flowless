@@ -50,6 +50,14 @@ public interface NodeStrategy {
                         String processInstanceId, Node node, NodeShowVo nodeVo, List<String> selectUserNodeIdList);
 
     /**
+     * 构建流程节点列表
+     *
+     * @param userTask     用户任务
+     * @param nodeUserList 节点用户列表
+     */
+    void buildProcessNodeList(cc.flyflow.core.dto.vo.UserTaskVO userTask, List<cc.flyflow.biz.dto.req.NodeUserReqDTO> nodeUserList);
+
+    /**
      * 处理用户相关节点
      *
      * @param node

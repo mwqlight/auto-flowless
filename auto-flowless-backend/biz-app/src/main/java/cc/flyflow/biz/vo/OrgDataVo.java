@@ -51,4 +51,27 @@ public class OrgDataVo {
     @ApiModelProperty(value = "用户状态 {@link constants.cc.flyflow.common.StatusEnum}", position = 6)
     private Integer status;
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setSelected(Boolean selected) {
+        this.selected = selected;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
 }

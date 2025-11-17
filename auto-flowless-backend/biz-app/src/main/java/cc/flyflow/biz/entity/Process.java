@@ -50,6 +50,58 @@ public class Process  extends BaseEntity {
     @TableField("`logo`")
     private String logo;
 
+    /**
+     * 获取表单名称
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * 设置表单名称
+     */
+    public Process setName(String name) {
+        this.name = name;
+        return this;
+    }
+
+    /**
+     * 获取管理员ID
+     */
+    public String getAdminId() {
+        return adminId;
+    }
+
+    /**
+     * 设置管理员ID
+     */
+    public Process setAdminId(String adminId) {
+        this.adminId = adminId;
+        return this;
+    }
+
+    /**
+     * 获取版本
+     */
+    public Integer getVersion() {
+        return version;
+    }
+
+    /**
+     * 设置版本
+     */
+    public Process setVersion(Integer version) {
+        this.version = version;
+        return this;
+    }
+
+    /**
+     * 获取创建时间
+     */
+    public Date getCreateTime() {
+        return super.getCreateTime();
+    }
+
 
     /**
      * 分组ID
@@ -98,6 +150,53 @@ public class Process  extends BaseEntity {
     @TableField("`is_hidden`")
     private Boolean hidden;
 
+    public String getTenantId() {
+        // Process类继承自BaseEntity，所以应该调用super.getTenantId()
+        return super.getTenantId();
+    }
+
+    /**
+     * 获取分组ID
+     */
+    public Long getGroupId() {
+        return groupId;
+    }
+
+    /**
+     * 获取排序
+     */
+    public Integer getSort() {
+        return sort;
+    }
+
+    /**
+     * 获取范围描述显示
+     */
+    public String getRangeShow() {
+        return rangeShow;
+    }
+
+    /**
+     * 获取图标配置
+     */
+    public String getLogo() {
+        return logo;
+    }
+
+    /**
+     * 获取备注
+     */
+    public String getRemark() {
+        return remark;
+    }
+
+    /**
+     * 获取更新时间
+     */
+    public Date getUpdateTime() {
+        return super.getUpdateTime();
+    }
+
 
 
     /**
@@ -145,6 +244,92 @@ public class Process  extends BaseEntity {
     @TableField("`version`")
     private Integer version;
 
+    // 手动添加getter和setter方法
+    public Boolean getHidden() {
+        return hidden;
+    }
 
+    public void setHidden(Boolean hidden) {
+        this.hidden = hidden;
+    }
 
+    public Boolean getStop() {
+        return stop;
+    }
+
+    public void setStop(Boolean stop) {
+        this.stop = stop;
+    }
+
+    public String getFlowId() {
+        return flowId;
+    }
+
+    public void setFlowId(String flowId) {
+        this.flowId = flowId;
+    }
+
+    public String getUniqueId() {
+        return uniqueId;
+    }
+
+    public void setUniqueId(String uniqueId) {
+        this.uniqueId = uniqueId;
+    }
+
+    public String getFormItems() {
+        return formItems;
+    }
+
+    public void setFormItems(String formItems) {
+        this.formItems = formItems;
+    }
+
+    public String getFormItemsPc() {
+        return formItemsPc;
+    }
+
+    public String getProcess() {
+        return process;
+    }
+
+    public void setTenantId(String tenantId) {
+        super.setTenantId(tenantId);
+    }
+
+    public void setFormItemsPc(String formItemsPc) {
+        this.formItemsPc = formItemsPc;
+    }
+
+    public void setProcess(String process) {
+        this.process = process;
+    }
+
+    public void setSort(Integer sort) {
+        this.sort = sort;
+    }
+
+    public Long getId() {
+        return super.getId();
+    }
+
+    public void setLogo(String logo) {
+        this.logo = logo;
+    }
+
+    public void setGroupId(Long groupId) {
+        this.groupId = groupId;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark;
+    }
+
+    public void setAdmin(String admin) {
+        this.admin = admin;
+    }
+
+    public void setRangeShow(String rangeShow) {
+        this.rangeShow = rangeShow;
+    }
 }
