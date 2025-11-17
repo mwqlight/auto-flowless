@@ -260,6 +260,69 @@ public class FormServiceImpl implements IFormService {
         return R.success(formItemVOList);
     }
 
+    @Override
+    public R<List<FormItemVO>> aiGenerateForm(String description) {
+        // TODO: 调用AI服务生成表单
+        // 目前返回模拟数据
+        List<FormItemVO> formItems = new ArrayList<>();
+        
+        FormItemVO nameItem = new FormItemVO();
+        nameItem.setName("姓名");
+        nameItem.setType("Input");
+        nameItem.setTypeName("单行文本");
+        nameItem.setIcon("EditPen");
+        nameItem.setPlaceholder("请输入姓名");
+        nameItem.setRequired(true);
+        nameItem.setPrintable(true);
+        Map<String, Object> nameProps = new HashMap<>();
+        nameProps.put("value", "");
+        nameItem.setProps(nameProps);
+        Map<String, Object> nameLayout = new HashMap<>();
+        nameLayout.put("row", 1);
+        nameLayout.put("col", 1);
+        nameLayout.put("span", 12);
+        nameItem.setLayout(nameLayout);
+        formItems.add(nameItem);
+        
+        FormItemVO emailItem = new FormItemVO();
+        emailItem.setName("邮箱");
+        emailItem.setType("Input");
+        emailItem.setTypeName("单行文本");
+        emailItem.setIcon("EditPen");
+        emailItem.setPlaceholder("请输入邮箱");
+        emailItem.setRequired(true);
+        emailItem.setPrintable(true);
+        Map<String, Object> emailProps = new HashMap<>();
+        emailProps.put("value", "");
+        emailItem.setProps(emailProps);
+        Map<String, Object> emailLayout = new HashMap<>();
+        emailLayout.put("row", 1);
+        emailLayout.put("col", 13);
+        emailLayout.put("span", 12);
+        emailItem.setLayout(emailLayout);
+        formItems.add(emailItem);
+        
+        FormItemVO phoneItem = new FormItemVO();
+        phoneItem.setName("电话");
+        phoneItem.setType("Input");
+        phoneItem.setTypeName("单行文本");
+        phoneItem.setIcon("EditPen");
+        phoneItem.setPlaceholder("请输入电话");
+        phoneItem.setRequired(true);
+        phoneItem.setPrintable(true);
+        Map<String, Object> phoneProps = new HashMap<>();
+        phoneProps.put("value", "");
+        phoneItem.setProps(phoneProps);
+        Map<String, Object> phoneLayout = new HashMap<>();
+        phoneLayout.put("row", 2);
+        phoneLayout.put("col", 1);
+        phoneLayout.put("span", 12);
+        phoneItem.setLayout(phoneLayout);
+        formItems.add(phoneItem);
+        
+        return R.success(formItems);
+    }
+
     private List<FormItemVO> getCCFormList(long ccId) {
 
         ProcessInstanceCopy processCopy = processCopyService.getById(ccId);

@@ -200,7 +200,8 @@ function getCaptcha() {
 	getCaptchaApi().then(({data}) => {
 		const {verifyCodeBase64, verifyCodeKey} = data;
 		loginData.value.verifyCodeKey = verifyCodeKey;
-		captchaBase64.value = verifyCodeBase64;
+		// 确保Base64字符串包含正确的前缀
+		captchaBase64.value = verifyCodeBase64.startsWith('data:image/') ? verifyCodeBase64 : `data:image/png;base64,${verifyCodeBase64}`;
 	});
 }
 

@@ -85,4 +85,19 @@ public class FormController {
     public R<List<FormItemVO>> dynamicFormList(@RequestBody QueryFormListParamVo taskDto) {
         return formService.dynamicFormList(taskDto);
     }
+
+    /**
+     * AI生成表单
+     *
+     * @param description 表单描述
+     * @return
+     */
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "body", dataType = "String", name = "description", value = "表单描述", required = true)
+    })
+    @ApiOperation(value = "AI生成表单", notes = "AI生成表单", httpMethod = "POST")
+    @PostMapping("aiGenerateForm")
+    public R<List<FormItemVO>> aiGenerateForm(@RequestBody String description) {
+        return formService.aiGenerateForm(description);
+    }
 }

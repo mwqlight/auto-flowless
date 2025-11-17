@@ -11,6 +11,15 @@ export interface FormVO {
   required: boolean;
   icon: String;
   props: FormConfigVO;
+  // 布局配置
+  layout?: {
+    // 所在行
+    row?: number;
+    // 所在列
+    col?: number;
+    // 占据列数
+    span?: number;
+  };
 }
 export interface FormConfigVO {
   minLength: Number;

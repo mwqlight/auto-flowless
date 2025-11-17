@@ -41,4 +41,11 @@ public interface IFormService {
      */
     R<List<FormItemVO>> dynamicFormList(QueryFormListParamVo taskDto);
 
+    /**
+     * AI生成表单
+     * @param description 表单描述
+     * @return
+     */
+    R<List<FormItemVO>> aiGenerateForm(String description);
+
 }
