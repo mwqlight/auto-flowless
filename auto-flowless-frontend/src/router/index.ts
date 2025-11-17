@@ -71,6 +71,21 @@ export const constantRoutes: RouteRecordRaw[] = [
 		],
 	},
 
+	// 业务实验室
+	{
+	  path: '/si-lab',
+	  component: Layout,
+	  name: 'SiLab',
+	  meta: {title: '业务实验室', icon: 'lab'}, // 菜单名称和图标
+	  children: [
+		  {
+			  path: 'index',
+			  component: () => import('@/views/si-lab/index.vue'),
+			  name: 'SiLabIndex',
+			  meta: {title: '代码生成', icon: 'code'}
+		  }
+	  ]
+	},
 	// 外部链接
 	/*{
 		  path: '/external-link',
