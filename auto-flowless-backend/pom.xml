@@ -13,6 +13,7 @@
         <module>biz-app</module>
         <module>common</module>
         <module>web</module>
+        <module>auto-flowless-si-lab-starter</module>
     </modules>
 
     <properties>
@@ -54,6 +55,13 @@
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
             <version>5.8.22</version>
+        </dependency>
+
+        <!-- 解决JDK9+中EasyCaptcha的ScriptEngine空指针问题 -->
+        <dependency>
+            <groupId>org.openjdk.nashorn</groupId>
+            <artifactId>nashorn-core</artifactId>
+            <version>15.4</version>
         </dependency>
 
 
