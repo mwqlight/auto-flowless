@@ -42,7 +42,7 @@ spring:
       fail-on-unknown-properties: false
 ##允许端口
 server:
-  port: 26859
+  port: 26863
 ##启用的日志文件
 logging:
   config: classpath:logback.xml

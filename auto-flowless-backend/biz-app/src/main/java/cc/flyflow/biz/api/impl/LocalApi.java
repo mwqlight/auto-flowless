@@ -44,7 +44,7 @@ public class LocalApi implements ApiStrategy, InitializingBean {
     @Resource
     private IDeptUserService deptUserService;
 
-    @Value("${login.captcha}")
+    // @Value("${login.captcha}")
     private Boolean captcha;
 
     /**
@@ -258,7 +258,11 @@ public class LocalApi implements ApiStrategy, InitializingBean {
      */
     @Override
     public LoginUrlDto getLoginUrl() {
-        return LoginUrlDto.builder().innerUrl(true).url("/aplogin").captcha(captcha).build();
+        LoginUrlDto loginUrlDto = new LoginUrlDto();
+        loginUrlDto.setInnerUrl(true);
+        loginUrlDto.setUrl("/login");
+        loginUrlDto.setCaptcha(true);
+        return loginUrlDto;
     }
 
     /**
