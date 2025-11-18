@@ -12,6 +12,7 @@ logs/
 nohup.out
 *.pid
 *.seed
+*.jar
 
 # IDE
 .idea/
