@@ -12,8 +12,8 @@
     <artifactId>web</artifactId>
 
     <properties>
-        <maven.compiler.source>8</maven.compiler.source>
-        <maven.compiler.target>8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <easy-captcha.version>1.6.2</easy-captcha.version>
         <poi.version>5.2.4</poi.version>
@@ -97,6 +97,12 @@
             <version>1.17.2</version>
         </dependency>
 
+        <!-- llm manager starter -->
+        <dependency>
+            <groupId>cc.flyflow</groupId>
+            <artifactId>auto-flowless-llm-manager-starter</artifactId>
+            <version>1.0.0</version>
+        </dependency>
         <!-- https://mvnrepository.com/artifact/com.belerweb/pinyin4j -->
         <dependency>
             <groupId>com.belerweb</groupId>
