@@ -18,8 +18,9 @@ export function loginApi(data: LoginData): AxiosPromise<LoginResult> {
 
 export function loginByTokenApi(token: string): AxiosPromise<LoginResult> {
   return request({
-    url: '/login/loginByToken?token='+token,
-    method: 'get'
+    url: '/login/loginByToken',
+    method: 'get',
+    params: { token: token }
   });
 }
 

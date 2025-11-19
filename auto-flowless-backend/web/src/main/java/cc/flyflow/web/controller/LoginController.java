@@ -23,7 +23,7 @@ import java.util.Map;
  */
 @Api(value = "login", tags = {"用户接口"})
 @RestController
-@RequestMapping(value = {"login"})
+@RequestMapping(value = {"login","api/login"})
 public class LoginController {
 
     @Resource

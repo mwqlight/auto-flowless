@@ -99,8 +99,6 @@ onMounted(() => {
 	if (isBlank(token)) {
 		token = authCode;
 	}
-
-
 	if (isNotBlank(token)) {
 		if (isWxCp() && isMobile()) {
 			//说明是手机端 微信跳转回来的
@@ -117,14 +115,15 @@ onMounted(() => {
 			return
 		}
 		userStore
-				.loginByToken(token)
-				.then(() => {
-
-
-
-
-					router.push({path: redirect, query: params.params});
-				});
+			.loginByToken(token)
+			.then(async () => {
+				await userStore.getInfo();
+				router.push({path: redirect, query: params.params});
+			})
+			.catch((error) => {
+				console.error('Login error:', error);
+				handleLogin();
+			});
 	} else {
 		handleLogin();
 

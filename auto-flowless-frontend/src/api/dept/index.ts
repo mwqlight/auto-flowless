@@ -9,7 +9,7 @@ import { DeptForm, DeptQuery, DeptVO } from './types';
  */
 export function listDepts(queryParams?: DeptQuery): AxiosPromise<DeptVO[]> {
   return request({
-	  url: '/org/treeAll',
+	  url: '/api/org/treeAll',
     method: 'get',
     params: queryParams
   });
