@@ -23,6 +23,7 @@ export default defineConfig(({ mode }: ConfigEnv): UserConfig => {
       alias: {
         "@": pathSrc,
       },
+      extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.vue'],
     },
     css: {
       // CSS 预处理器

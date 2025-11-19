@@ -34,6 +34,11 @@
             <artifactId>biz-app</artifactId>
             <version>2.0.5</version>
         </dependency>
+        <dependency>
+            <groupId>cc.flyflow</groupId>
+            <artifactId>auto-flowless-alg-lab-starter</artifactId>
+            <version>2.0.5</version>
+        </dependency>
 
         <!--为了支持jdk17 如果使用jdk17 请引入-->
         <!--        <dependency>-->
@@ -151,6 +156,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
+            <version>2.7.6</version>
+        </dependency>
+
+        <!-- Spring Boot Actuator -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
             <version>2.7.6</version>
         </dependency>
 

@@ -32,7 +32,7 @@ public class TenantInterceptor implements WebMvcConfigurer {
                             TenantUtil.put(tenantId);
                         }else {
                             String servletPath = request.getServletPath();
-                            if(!StrUtil.containsAny(servletPath,"/file/show","/login/getLoginUrl","/login/captcha")){
+                            if(!StrUtil.containsAny(servletPath,"/file/show","/login/getLoginUrl","/login/captcha","/actuator")){
                                 log.warn("http请求头未找到租户id:{}", servletPath);
                             }
                         }

@@ -82,46 +82,28 @@ export const constantRoutes: RouteRecordRaw[] = [
 			  }
 		  ]
 	  }*/
-	// 多级嵌套路由
-	/* {
-		   path: '/nested',
-		   component: Layout,
-		   redirect: '/nested/level1/level2',
-		   name: 'Nested',
-		   meta: {title: '多级菜单', icon: 'nested'},
-		   children: [
-			   {
-				   path: 'level1',
-				   component: () => import('@/views/nested/level1/index.vue'),
-				   name: 'Level1',
-				   meta: {title: '菜单一级'},
-				   redirect: '/nested/level1/level2',
-				   children: [
-					   {
-						   path: 'level2',
-						   component: () => import('@/views/nested/level1/level2/index.vue'),
-						   name: 'Level2',
-						   meta: {title: '菜单二级'},
-						   redirect: '/nested/level1/level2/level3',
-						   children: [
-							   {
-								   path: 'level3-1',
-								   component: () => import('@/views/nested/level1/level2/level3/index1.vue'),
-								   name: 'Level3-1',
-								   meta: {title: '菜单三级-1'}
-							   },
-							   {
-								   path: 'level3-2',
-								   component: () => import('@/views/nested/level1/level2/level3/index2.vue'),
-								   name: 'Level3-2',
-								   meta: {title: '菜单三级-2'}
-							   }
-						   ]
-					   }
-				   ]
-			   },
-		   ]
-	   }*/
+	// 算法实验室路由
+	{
+		path: '/alg-lab',
+		component: Layout,
+		redirect: '/alg-lab/index',
+		name: 'AlgLab',
+		meta: {title: '算法实验室', icon: 'algorithm'},
+		children: [
+			{
+				path: 'index',
+				component: () => import('@/views/alg-lab/index.vue'),
+				name: 'AlgLabIndex',
+				meta: {title: '算法列表'}
+			},
+			{
+				path: 'detail/:algId',
+				component: () => import('@/views/alg-lab/detail.vue'),
+				name: 'AlgLabDetail',
+				meta: {title: '算法详情', hidden: true}
+			}
+		]
+	}
 ];
 
 /**
