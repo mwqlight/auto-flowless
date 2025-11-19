@@ -9,7 +9,7 @@ spring:
     port: 6379
     ##使用的db
     database: 13
-    password: 123456
+    password: 
   servlet:
     multipart:
       max-file-size: 50MB
@@ -18,12 +18,12 @@ spring:
     name: flyflow
   datasource:
     ##数据库地址
-    url: jdbc:mysql://localhost:3307/flyflow_os?allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://localhost:3306/flyflow_os?allowPublicKeyRetrieval=true&nullCatalogMeansCurrent=true&useSSL=false&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
     ##数据库账号
     username: root
     ##数据库密码
-    password: 123456
+    password: root
     hikari:
       connection-timeout: 10000
       validation-timeout: 3000

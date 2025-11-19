@@ -10,7 +10,14 @@ export interface LoginData {
    * 密码
    */
   password?: string;
-
+  /**
+   * 手机号
+   */
+  phone?: string;
+  /**
+   * 租户ID
+   */
+  tenantId?: string;
   /**
    * 验证码缓存key
    */

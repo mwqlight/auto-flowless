@@ -58,7 +58,7 @@ service.interceptors.request.use(
 
 		const userStore = useUserStoreHook();
 		if (userStore.token) {
-			config.headers.Authorization = userStore.token;
+			config.headers.Authorization = 'Bearer ' + userStore.token;
 		}
 		if (userStore.tenantId) {
 			config.headers['Flyflow-Tenant-Id'] = userStore.tenantId;

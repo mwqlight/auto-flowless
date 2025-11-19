@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 
 @Slf4j
-@MapperScan(basePackages = "cc.flyflow.biz.mapper")
+@MapperScan(basePackages = {"cc.flyflow.biz.mapper", "cc.flyflow.alg.mapper"})
 @SpringBootApplication(scanBasePackages = {"cc.flyflow"})
 @EnableCaching
 public class WebApp {
