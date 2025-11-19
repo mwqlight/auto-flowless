@@ -13,6 +13,7 @@
         <module>biz-app</module>
         <module>common</module>
         <module>web</module>
+        <module>auto-flowless-av-stream-starter</module>
     </modules>
 
     <properties>

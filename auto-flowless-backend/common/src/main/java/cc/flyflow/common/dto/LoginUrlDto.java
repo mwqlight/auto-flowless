@@ -24,6 +24,11 @@ public class LoginUrlDto {
     @ApiModelProperty("登录地址")
     private String url;
     /**
+     * 无需登录即可访问的地址
+     */
+    @ApiModelProperty("无需登录即可访问的地址")
+    private List<String> noLoginUrl;
+    /**
      * 是否开启验证码
      * 默认开启的
      */

@@ -228,18 +228,59 @@ onMounted(() => {
 
 		loading.value = true;
 		userStore
-				.loginByToken(token)
-				.then(() => {
+			.loginByToken(token)
+			.then(async () => {
+				await userStore.getInfo();
 
+				const otherQueryParams = Object.keys(query).reduce(
+					(acc: any, cur: string) => {
+						if (cur !== "redirect") {
+							acc[cur] = query[cur];
+						}
+						return acc;
+					},
+					{}
+				);
+
+
+				router.push({path: redirect, query: otherQueryParams});
+			})
+			.catch(() => {
+				// 验证失败，重新生成验证码
+				if(captcha.value==='true'){
+					getCaptcha();
+				}
+			})
+			.finally(() => {
+				loading.value = false;
+			});
+	}
+
+})
+
+/**
+ * 登录
+ */
+function handleLogin() {
+	loginFormRef.value.validate((valid: boolean) => {
+		if (valid) {
+			loading.value = true;
+			userStore
+				.login(loginData.value)
+				.then(async () => {
+					await userStore.getInfo();
+					const query: LocationQuery = route.query;
+
+					const redirect = (query.redirect as LocationQueryValue) ?? "/";
 
 					const otherQueryParams = Object.keys(query).reduce(
-							(acc: any, cur: string) => {
-								if (cur !== "redirect") {
-									acc[cur] = query[cur];
-								}
-								return acc;
-							},
-							{}
+						(acc: any, cur: string) => {
+							if (cur !== "redirect") {
+								acc[cur] = query[cur];
+							}
+							return acc;
+						},
+						{}
 					);
 
 
@@ -254,46 +295,6 @@ onMounted(() => {
 				.finally(() => {
 					loading.value = false;
 				});
-	}
-
-})
-
-/**
- * 登录
- */
-function handleLogin() {
-	loginFormRef.value.validate((valid: boolean) => {
-		if (valid) {
-			loading.value = true;
-			userStore
-					.login(loginData.value)
-					.then(() => {
-						const query: LocationQuery = route.query;
-
-						const redirect = (query.redirect as LocationQueryValue) ?? "/";
-
-						const otherQueryParams = Object.keys(query).reduce(
-								(acc: any, cur: string) => {
-									if (cur !== "redirect") {
-										acc[cur] = query[cur];
-									}
-									return acc;
-								},
-								{}
-						);
-
-
-						router.push({path: redirect, query: otherQueryParams});
-					})
-					.catch(() => {
-						// 验证失败，重新生成验证码
-						if(captcha.value==='true'){
-							getCaptcha();
-						}
-					})
-					.finally(() => {
-						loading.value = false;
-					});
 		}
 	});
 }

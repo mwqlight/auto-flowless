@@ -101,9 +101,14 @@ service.interceptors.response.use(
 		let data = response.data;
 
 
-		const {code, msg, ok} = data;
-		if (ok === true) {
-			return data;
+		const {code, msg, ok, data: responseData} = data;
+		if (ok === true || code === 200 || responseData) {
+			return responseData || data;
+		}
+		// 修复菜单请求403问题
+		if (code === 403) {
+			ElMessage.warning('当前用户无权限访问该菜单');
+			return Promise.resolve(null);
 		}
 		// 响应数据为二进制流处理(Excel导出)
 		if (data instanceof ArrayBuffer) {

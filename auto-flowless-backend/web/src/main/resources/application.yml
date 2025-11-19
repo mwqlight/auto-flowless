@@ -119,7 +119,7 @@ role:
 
 ##账号密码登录页面：是否开启验证码
 login:
-  captcha: true
+  captcha: false
 
 
 

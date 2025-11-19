@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -258,7 +259,12 @@ public class LocalApi implements ApiStrategy, InitializingBean {
      */
     @Override
     public LoginUrlDto getLoginUrl() {
-        return LoginUrlDto.builder().innerUrl(true).url("/aplogin").captcha(captcha).build();
+        return LoginUrlDto.builder()
+                .innerUrl(true)
+                .url("/aplogin")
+                .noLoginUrl(new ArrayList<>())
+                .captcha(captcha)
+                .build();
     }
 
     /**

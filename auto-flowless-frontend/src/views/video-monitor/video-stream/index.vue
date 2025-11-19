@@ -1,0 +1,285 @@
+<script setup lang="ts">
+import { ref, reactive } from 'vue';
+import { ElMessage, ElForm, ElDialog } from 'element-plus';
+import { getVideoStreamList, addVideoStream, updateVideoStream, deleteVideoStream } from '@/api/video-stream';
+import { VideoStream, VideoStreamQuery } from '@/api/video-stream/types';
+
+// 页面标题
+const pageTitle = '视频流列表';
+
+// 加载状态
+const loading = ref(false);
+
+// 表格数据
+const videoStreamList = ref<VideoStream[]>([]);
+
+// 分页信息
+const pagination = reactive({
+  pageNum: 1,
+  pageSize: 10,
+  total: 0
+});
+
+// 查询参数
+const queryParams = reactive<VideoStreamQuery>({
+  pageNum: 1,
+  pageSize: 10,
+  streamName: '',
+  protocol: ''
+});
+
+// 表单引用
+const queryFormRef = ref<InstanceType<typeof ElForm>>();
+const videoStreamFormRef = ref<InstanceType<typeof ElForm>>();
+
+// 对话框
+const dialog = reactive({
+  visible: false,
+  title: '添加视频流'
+});
+
+// 表单数据
+const formData = reactive<VideoStream>({
+  streamName: '',
+  streamUrl: '',
+  protocol: 'rtsp'
+});
+
+// 表单规则
+const rules = reactive({
+  streamName: [{ required: true, message: '视频流名称不能为空', trigger: 'blur' }],
+  streamUrl: [{ required: true, message: '视频流URL不能为空', trigger: 'blur' }],
+  protocol: [{ required: true, message: '协议不能为空', trigger: 'change' }]
+});
+
+// 初始化数据
+function initData() {
+  loading.value = true;
+  getVideoStreamList(queryParams).then(response => {
+    videoStreamList.value = response.data;
+    pagination.total = response.total;
+    loading.value = false;
+  }).catch(error => {
+    ElMessage.error('查询失败：' + error.message);
+    loading.value = false;
+  });
+}
+
+// 查询数据
+function handleQuery() {
+  queryParams.pageNum = 1;
+  initData();
+}
+
+// 重置查询
+function handleReset() {
+  if (queryFormRef.value) {
+    queryFormRef.value.resetFields();
+  }
+  handleQuery();
+}
+
+// 打开添加对话框
+function handleAdd() {
+  dialog.title = '添加视频流';
+  dialog.visible = true;
+  if (videoStreamFormRef.value) {
+    videoStreamFormRef.value.resetFields();
+  }
+}
+
+// 打开编辑对话框
+function handleEdit(row: VideoStream) {
+  dialog.title = '编辑视频流';
+  dialog.visible = true;
+  Object.assign(formData, row);
+}
+
+// 提交表单
+function handleSubmit() {
+  if (!videoStreamFormRef.value) return;
+  
+  videoStreamFormRef.value.validate((valid: boolean) => {
+    if (valid) {
+      const api = formData.streamId ? updateVideoStream : addVideoStream;
+      api(formData).then(() => {
+        ElMessage.success('操作成功');
+        dialog.visible = false;
+        initData();
+      }).catch(error => {
+        ElMessage.error('操作失败：' + error.message);
+      });
+    }
+  });
+}
+
+// 删除视频流
+function handleDelete(row: VideoStream) {
+  deleteVideoStream(row.streamId).then(() => {
+    ElMessage.success('删除成功');
+    initData();
+  }).catch(error => {
+    ElMessage.error('删除失败：' + error.message);
+  });
+}
+
+// 分页变化
+function handlePageChange(pageNum: number) {
+  queryParams.pageNum = pageNum;
+  pagination.pageNum = pageNum;
+  initData();
+}
+
+// 页大小变化
+function handlePageSizeChange(pageSize: number) {
+  queryParams.pageSize = pageSize;
+  pagination.pageSize = pageSize;
+  initData();
+}
+
+// 初始化
+initData();
+</script>
+
+<template>
+  <div class="app-container">
+    <!-- 顶部查询区域 -->
+    <div class="search-form">
+      <el-form ref="queryFormRef" :model="queryParams" inline>
+        <el-form-item label="视频流名称">
+          <el-input
+            v-model="queryParams.streamName"
+            placeholder="请输入视频流名称"
+            clearable
+            style="width: 200px"
+          />
+        </el-form-item>
+        <el-form-item label="协议">
+          <el-select
+            v-model="queryParams.protocol"
+            placeholder="请选择协议"
+            clearable
+            style="width: 150px"
+          >
+            <el-option label="RTSP" value="rtsp" />
+            <el-option label="RTMP" value="rtmp" />
+          </el-select>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" @click="handleQuery">查询</el-button>
+          <el-button @click="handleReset">重置</el-button>
+        </el-form-item>
+      </el-form>
+    </div>
+
+    <!-- 按钮区域 -->
+    <div class="button-group">
+      <el-button type="primary" @click="handleAdd">
+        <el-icon><Plus /></el-icon>
+        添加视频流
+      </el-button>
+    </div>
+
+    <!-- 表格区域 -->
+    <el-table
+      v-loading="loading"
+      :data="videoStreamList"
+      border
+      stripe
+      style="width: 100%"
+    >
+      <el-table-column prop="streamId" label="ID" width="150" />
+      <el-table-column prop="streamName" label="视频流名称" min-width="180" />
+      <el-table-column prop="streamUrl" label="视频流URL" min-width="300" />
+      <el-table-column prop="protocol" label="协议" width="100" />
+      <el-table-column prop="status" label="状态" width="120">
+        <template #default="scope">
+          <el-tag :type="scope.row.status === 'playing' ? 'success' : 'warning'">
+            {{ scope.row.status === 'playing' ? '播放中' : '已暂停' }}
+          </el-tag>
+        </template>
+      </el-table-column>
+      <el-table-column prop="playProgress" label="播放进度(秒)" width="150" />
+      <el-table-column prop="streamType" label="类型" width="120" />
+      <el-table-column prop="createTime" label="创建时间" width="180" />
+      <el-table-column label="操作" width="200" fixed="right">
+        <template #default="scope">
+          <el-button
+            type="primary"
+            size="small"
+            @click="handleEdit(scope.row)"
+            >编辑</el-button
+          >
+          <el-button
+            type="danger"
+            size="small"
+            @click="handleDelete(scope.row)"
+            >删除</el-button
+          >
+        </template>
+      </el-table-column>
+    </el-table>
+
+    <!-- 分页区域 -->
+    <div class="pagination-container">
+      <el-pagination
+        v-model:current-page="pagination.pageNum"
+        v-model:page-size="pagination.pageSize"
+        :total="pagination.total"
+        :page-sizes="[10, 20, 50, 100]"
+        layout="total, sizes, prev, pager, next, jumper"
+        @size-change="handlePageSizeChange"
+        @current-change="handlePageChange"
+      />
+    </div>
+
+    <!-- 表单对话框 -->
+    <el-dialog
+      v-model="dialog.visible"
+      :title="dialog.title"
+      width="500px"
+      @close="dialog.visible = false"
+    >
+      <el-form
+        ref="videoStreamFormRef"
+        :model="formData"
+        :rules="rules"
+        label-width="100px"
+      >
+        <el-form-item label="视频流名称" prop="streamName">
+          <el-input v-model="formData.streamName" placeholder="请输入视频流名称" />
+        </el-form-item>
+        <el-form-item label="视频流URL" prop="streamUrl">
+          <el-input v-model="formData.streamUrl" placeholder="请输入视频流URL" />
+        </el-form-item>
+        <el-form-item label="协议" prop="protocol">
+          <el-select v-model="formData.protocol" placeholder="请选择协议">
+            <el-option label="RTSP" value="rtsp" />
+            <el-option label="RTMP" value="rtmp" />
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button @click="dialog.visible = false">取消</el-button>
+          <el-button type="primary" @click="handleSubmit">确认</el-button>
+        </div>
+      </template>
+    </el-dialog>
+  </div>
+</template>
+
+<style scoped>
+.search-form {
+  margin-bottom: 20px;
+}
+
+.button-group {
+  margin-bottom: 20px;
+}
+
+.pagination-container {
+  text-align: right;
+  margin-top: 20px;
+}
+</style>

@@ -16,7 +16,7 @@ import javax.annotation.Resource;
  * @since 2023-06-10
  */
 @RestController
-@RequestMapping(value = {"menu","api/menu"})
+@RequestMapping(value = {"api/menu"})
 public class MenuController {
 
     @Resource
