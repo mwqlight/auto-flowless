@@ -45,69 +45,66 @@ public class MenuServiceImpl extends MPJBaseServiceImpl<MenuMapper, Menu> implem
     private IRoleMenuService roleMenuService;
 
     /**
-     * 路由列表
+     * 查询路由配置
      *
-     * @return
+     * @return 路由配置
      */
     @Override
-    public R routes() {
-
-        MPJLambdaWrapper<Menu> lambdaQueryWrapper=new MPJLambdaWrapper<Menu>()
-                .select(
-                        Menu::getId,
-                        Menu::getName,
-                        Menu::getParentId,
-                        Menu::getPath,
-                        Menu::getComponent,
-                        Menu::getIcon,
-                        Menu::getVisible,
-                        Menu::getRedirect,
-                        Menu::getType
-                        )
-                .select(RoleMenu::getRoleId)
-                .leftJoin(RoleMenu.class,RoleMenu::getMenuId,Menu::getId)
+    public R<List<RouteVO>> routes() {
+        // 查询菜单列表
+        MPJLambdaWrapper<Menu> lambdaQueryWrapper = new MPJLambdaWrapper<>();
+        lambdaQueryWrapper.selectAll(Menu.class)
+                .leftJoin(RoleMenu.class, RoleMenu::getMenuId, Menu::getId)
+                .leftJoin(Role.class, Role::getId, RoleMenu::getRoleId)
+                .select(Role::getKey)
                 .ne(Menu::getType, MenuTypeEnum.BUTTON.getValue())
-                .orderByAsc(Menu::getSort)
-                ;
+                .orderByAsc(Menu::getSort);
 
-        List<RouteBO> tempMenuList = this.selectJoinList(RouteBO.class,lambdaQueryWrapper);
+        List<RouteBO> routeBos = this.selectJoinList(RouteBO.class, lambdaQueryWrapper);
 
-        List<Long> collect = tempMenuList.stream().map(RouteBO::getId).distinct().collect(Collectors.toList());
-
-        List<RouteBO> menuList=new ArrayList<>();
-        for (Long aLong : collect) {
-            List<RouteBO> collect1 = tempMenuList.stream().filter(w -> w.getId().longValue() == aLong).collect(Collectors.toList());
-            RouteBO routeBO = collect1.get(0);
-            List<String> collect2 = collect1.stream().map(RouteBO::getRoleId).collect(Collectors.toList());
-            routeBO.setRoles(collect2);
-            menuList.add(routeBO);
+        // 合并相同菜单的角色集合
+        Map<String, RouteBO> menuMap = new HashMap<>();
+        for (RouteBO routeBO : routeBos) {
+            RouteBO existMenu = menuMap.get(routeBO.getId());
+            if (existMenu != null) {
+                existMenu.getRoles().addAll(routeBO.getRoles());
+            } else {
+                // 创建新的角色集合，避免引用同一对象
+                Set<String> roles = new HashSet<>(routeBO.getRoles());
+                routeBO.setRoles(roles);
+                menuMap.put(routeBO.getId(), routeBO);
+            }
         }
 
-        List<RouteVO> routeVOS = recurRoutes(SystemConstants.ROOT_NODE_ID, menuList);
+        // 去重菜单列表
+        List<RouteBO> uniqueMenuList = menuMap.values().stream().collect(Collectors.toList());
+
+        // 生成路由树
+        List<RouteVO> routeVOS = recurRoutes(SystemConstants.ROOT_NODE_ID, uniqueMenuList);
         return R.success(routeVOS);
     }
 
     /**
      * 根据角色id集合查询权限集合
      *
-     * @param roleKeySet
-     * @return
+     * @param roleKeySet 角色key集合
+     * @return 权限集合
      */
     @Override
     public R<Set<String>> listRolePerms(Set<String> roleKeySet) {
-
-        MPJLambdaWrapper<Menu> lambdaQueryWrapper=new MPJLambdaWrapper<Menu>()
-                .distinct()
-                .select(
-                        Menu::getPerm
-                )
-                .leftJoin(RoleMenu.class,RoleMenu::getMenuId,Menu::getId)
+        // 使用MPJLambdaWrapper查询角色对应的权限标识
+        MPJLambdaWrapper<Menu> lambdaQueryWrapper = new MPJLambdaWrapper<>();
+        lambdaQueryWrapper.distinct()
+                .select(Menu::getPerms)
+                .leftJoin(RoleMenu.class, RoleMenu::getMenuId, Menu::getId)
+                .leftJoin(Role.class, Role::getId, RoleMenu::getRoleId)
                 .eq(Menu::getType, MenuTypeEnum.BUTTON.getValue())
-                .isNotNull(Menu::getPerm)
-                .in(RoleMenu::getRoleId,roleKeySet)
-                ;
-        List<String> strings = this.selectJoinList(String.class, lambdaQueryWrapper);
-        return R.success(CollUtil.newHashSet(strings));
+                .isNotNull(Menu::getPerms)
+                .in(Role::getKey, roleKeySet);
+
+        List<String> permList = this.selectJoinList(String.class, lambdaQueryWrapper);
+
+        return R.success(CollUtil.newHashSet(permList));
     }
 
     /**

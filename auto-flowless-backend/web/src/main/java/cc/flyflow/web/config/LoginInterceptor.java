@@ -72,7 +72,8 @@ public class LoginInterceptor implements WebMvcConfigurer {
                         "/webjars/*/*",
                         "/favicon.ico",
                         "/swagger-resources",
-                        "/koTime/*"
+                        "/koTime/*",
+                        "/api/system/user/login"
                 )
         ;
 

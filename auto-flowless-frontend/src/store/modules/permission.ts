@@ -15,21 +15,16 @@ const Layout = () => import("@/layout/index.vue");
  * @returns
  */
 const hasPermission = (roles: string[], route: RouteRecordRaw) => {
-
-
-
-  if (route.meta && route.meta.roles) {
-    // 角色【超级管理员】拥有所有权限，忽略校验
-    if (roles.includes("ROOT")) {
-      return true;
-    }
-    return roles.some((role) => {
-      if (route.meta?.roles !== undefined) {
-        return (route.meta.roles as string[]).includes(role);
-      }
-    });
+  // 没有角色要求的路由，所有人都可以访问
+  if (!route.meta || !route.meta.roles) {
+    return true;
   }
-  return false;
+  // 角色【超级管理员】拥有所有权限，忽略校验
+  if (roles.includes("ROOT")) {
+    return true;
+  }
+  // 检查用户角色是否在路由允许的角色列表中
+  return roles.some(role => route.meta?.roles?.includes(role));
 };
 
 /**

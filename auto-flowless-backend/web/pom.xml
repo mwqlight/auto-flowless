@@ -34,6 +34,12 @@
             <artifactId>biz-app</artifactId>
             <version>2.0.5</version>
         </dependency>
+        <!-- 已将price-lab模块代码直接整合到web项目中 -->
+        <!--<dependency>
+            <groupId>cc.flyflow</groupId>
+            <artifactId>auto-flowless-price-lab-starter</artifactId>
+            <version>2.0.5</version>
+        </dependency>-->
 
         <!--为了支持jdk17 如果使用jdk17 请引入-->
         <!--        <dependency>-->
@@ -70,6 +76,31 @@
             <artifactId>spring-boot-starter-aop</artifactId>
             <version>2.7.6</version>
         </dependency>
+        <!-- JPA 依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>2.7.6</version>
+        </dependency>
+        <!-- JAXB依赖，解决Java 11+中JAXB类未找到的问题 -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>2.3.6</version>
+            <scope>runtime</scope>
+        </dependency>
+        <!-- MySQL驱动依赖 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.33</version>
+            <scope>runtime</scope>
+        </dependency>
 
         <!-- 验证码 -->
         <dependency>
@@ -95,6 +126,17 @@
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
             <version>1.17.2</version>
+        </dependency>
+        <!-- WebMagic依赖 -->
+        <dependency>
+            <groupId>us.codecraft</groupId>
+            <artifactId>webmagic-core</artifactId>
+            <version>0.7.6</version>
+        </dependency>
+        <dependency>
+            <groupId>us.codecraft</groupId>
+            <artifactId>webmagic-extension</artifactId>
+            <version>0.7.6</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.belerweb/pinyin4j -->

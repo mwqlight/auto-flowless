@@ -16,7 +16,7 @@ import { resetRouter } from "@/router";
 export const useUserStore = defineStore("user", () => {
     // state
     const userId = ref();
-    const token = useStorage("accessToken", "");
+    const token = useStorage("token", "");
     const tenantId = useStorage("tenantId", "");
     const nickname = ref("");
     const avatar = ref("");
@@ -95,7 +95,7 @@ export const useUserStore = defineStore("user", () => {
                         return reject("Verification failed, please Login again.");
                     }
                     if (!data.roles || data.roles.length <= 0) {
-                        reject("getUserInfo: roles must be a non-null array!");
+                        data.roles = [];
                     }
                     userId.value = data.id;
                     nickname.value = data.name;
