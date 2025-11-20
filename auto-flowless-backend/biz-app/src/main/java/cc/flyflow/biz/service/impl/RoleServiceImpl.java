@@ -55,7 +55,12 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements IR
         }
         Set<String> roleIdSet = userRoleList.stream().map(UserRole::getRoleId).collect(Collectors.toSet());
 
-        return R.success(roleIdSet);
+        // 根据角色id集合获取角色信息
+        List<Role> roleList = this.lambdaQuery().in(Role::getId, roleIdSet).list();
+        // 提取角色key集合
+        Set<String> roleKeySet = roleList.stream().map(Role::getKey).collect(Collectors.toSet());
+
+        return R.success(roleKeySet);
 
     }
 

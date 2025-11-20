@@ -15,7 +15,7 @@ const whiteList = ["/login", "/aplogin", "/ddlogin", "/wxcplogin", "/fslogin"];
 
 router.beforeEach(async (to, from, next) => {
 	NProgress.start();
-	const hasToken = localStorage.getItem("accessToken");
+	const hasToken = localStorage.getItem("token");
 	if (to.path.indexOf("/redirectlogin")>=0) {
 		next();
 	} else if (hasToken) {

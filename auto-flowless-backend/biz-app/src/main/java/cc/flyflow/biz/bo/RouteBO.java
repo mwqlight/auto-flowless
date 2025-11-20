@@ -70,5 +70,5 @@ public class RouteBO {
      */
     private List<String> roles;
 
-    private String roleId;
+    private String key;
 }

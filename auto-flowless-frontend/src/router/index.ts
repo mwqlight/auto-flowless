@@ -72,7 +72,7 @@ export const constantRoutes: RouteRecordRaw[] = [
 	},
 
 	// 外部链接
-	/*{
+	/*{ 
 		  path: '/external-link',
 		  component: Layout,
 		  children: [
@@ -81,7 +81,21 @@ export const constantRoutes: RouteRecordRaw[] = [
 				  meta: { title: '外部链接', icon: 'link' }
 			  }
 		  ]
-	  }*/
+	  }
+
+	  // 商城比价
+	  {
+	    path: '/price-lab',
+	    component: Layout,
+	    children: [
+	      {
+	        path: '',
+	        component: () => import('@/views/price-lab/index.vue'),
+	        name: 'PriceLab',
+	        meta: { title: '商城比价', icon: 'money' }
+	      }
+	    ]
+	  }
 	// 多级嵌套路由
 	/* {
 		   path: '/nested',
@@ -138,6 +152,16 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
 	// 在导航前执行操作，例如身份验证检查
 
+	// 判断是否已登录
+	const token = localStorage.getItem('token');
+	if (token) {
+		// 已登录时，如果访问登录页则跳转到首页
+		if (to.path === '/login' || to.path === '/aplogin' || to.path === '/redirectlogin') {
+			next('/dashboard');
+			return;
+		}
+	}
+
 	let href = window.location.href;
 
 	//判断是来自微信 或者 钉钉认证跳转过来的 替换体制
@@ -158,7 +182,6 @@ router.beforeEach((to, from, next) => {
 			let href1 = href.substring(0, idx1 - 2)+'/#/login?token='+s;
 			window.location.href= href1
 		}
-
 
 
 
