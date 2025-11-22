@@ -24,7 +24,9 @@ import {
 	Upload,
 	FolderOpened,
 	CollectionTag,
-	FirstAidKit
+	FirstAidKit,
+	CustomerService,
+	UserGroup
 } from '@element-plus/icons-vue'
 
 const dictIcon = reactive({
@@ -59,7 +61,9 @@ const dictIcon = reactive({
 	'Loading': Loading,
 	'Connection': Connection,
 	'Edit': Edit,
-	'FolderOpened': FolderOpened
+	'FolderOpened': FolderOpened,
+	'CustomerService': CustomerService,
+	'UserGroup': UserGroup
 })
 
 const installIcon = (app) => {

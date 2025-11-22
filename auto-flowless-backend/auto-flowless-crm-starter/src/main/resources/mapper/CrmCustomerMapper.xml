@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cc.flyflow.crm.mapper.CrmCustomerMapper">
+
+    <resultMap type="cc.flyflow.crm.entity.CrmCustomer" id="CrmCustomerResult">
+        <id property="id" column="id"/>
+        <result property="customerName" column="customer_name"/>
+        <result property="creditCode" column="credit_code"/>
+        <result property="industryType" column="industry_type"/>
+        <result property="enterpriseScale" column="enterprise_scale"/>
+        <result property="controllingShareholder" column="controlling_shareholder"/>
+        <result property="customerLevel" column="customer_level"/>
+        <result property="tags" column="tags" typeHandler="com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler"/>
+        <result property="managerId" column="manager_id"/>
+        <result property="managerName" column="manager_name"/>
+        <result property="lastFollowTime" column="last_follow_time"/>
+        <result property="followStatus" column="follow_status"/>
+        <result property="isPublicPool" column="is_public_pool"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="delFlag" column="del_flag"/>
+    </resultMap>
+
+    <sql id="selectCrmCustomerVo">
+        select id, customer_name, credit_code, industry_type, enterprise_scale, controlling_shareholder, customer_level, tags, manager_id, manager_name, last_follow_time, follow_status, is_public_pool, create_time, update_time, del_flag from crm_customer
+    </sql>
+
+    <select id="selectCrmCustomerById" parameterType="Long" resultMap="CrmCustomerResult">
+        <include refid="selectCrmCustomerVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectCrmCustomerList" parameterType="cc.flyflow.crm.entity.CrmCustomer" resultMap="CrmCustomerResult">
+        <include refid="selectCrmCustomerVo"/>
+        <where>
+            <if test="customerName != null  and customerName != ''"> and customer_name like concat('%', #{customerName}, '%')</if>
+            <if test="creditCode != null  and creditCode != ''"> and credit_code = #{creditCode}</if>
+            <if test="industryType != null  and industryType != ''"> and industry_type = #{industryType}</if>
+            <if test="enterpriseScale != null  and enterpriseScale != ''"> and enterprise_scale = #{enterpriseScale}</if>
+            <if test="customerLevel != null  and customerLevel != ''"> and customer_level = #{customerLevel}</if>
+            <if test="managerId != null "> and manager_id = #{managerId}</if>
+            <if test="followStatus != null  and followStatus != ''"> and follow_status = #{followStatus}</if>
+            <if test="isPublicPool != null "> and is_public_pool = #{isPublicPool}</if>
+            <if test="delFlag != null "> and del_flag = #{delFlag}</if>
+        </where>
+    </select>
+
+    <insert id="insertCrmCustomer" parameterType="cc.flyflow.crm.entity.CrmCustomer">
+        insert into crm_customer
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="customerName != null  and customerName != ''">customer_name,</if>
+            <if test="creditCode != null  and creditCode != ''">credit_code,</if>
+            <if test="industryType != null  and industryType != ''">industry_type,</if>
+            <if test="enterpriseScale != null  and enterpriseScale != ''">enterprise_scale,</if>
+            <if test="controllingShareholder != null  and controllingShareholder != ''">controlling_shareholder,</if>
+            <if test="customerLevel != null  and customerLevel != ''">customer_level,</if>
+            <if test="tags != null ">tags,</if>
+            <if test="managerId != null ">manager_id,</if>
+            <if test="managerName != null  and managerName != ''">manager_name,</if>
+            <if test="lastFollowTime != null ">last_follow_time,</if>
+            <if test="followStatus != null  and followStatus != ''">follow_status,</if>
+            <if test="isPublicPool != null ">is_public_pool,</if>
+            <if test="createTime != null ">create_time,</if>
+            <if test="updateTime != null ">update_time,</if>
+            <if test="delFlag != null ">del_flag,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="customerName != null  and customerName != ''">#{customerName},</if>
+            <if test="creditCode != null  and creditCode != ''">#{creditCode},</if>
+            <if test="industryType != null  and industryType != ''">#{industryType},</if>
+            <if test="enterpriseScale != null  and enterpriseScale != ''">#{enterpriseScale},</if>
+            <if test="controllingShareholder != null  and controllingShareholder != ''">#{controllingShareholder},</if>
+            <if test="customerLevel != null  and customerLevel != ''">#{customerLevel},</if>
+            <if test="tags != null ">#{tags,typeHandler=com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler},</if>
+            <if test="managerId != null ">#{managerId},</if>
+            <if test="managerName != null  and managerName != ''">#{managerName},</if>
+            <if test="lastFollowTime != null ">#{lastFollowTime},</if>
+            <if test="followStatus != null  and followStatus != ''">#{followStatus},</if>
+            <if test="isPublicPool != null ">#{isPublicPool},</if>
+            <if test="createTime != null ">#{createTime},</if>
+            <if test="updateTime != null ">#{updateTime},</if>
+            <if test="delFlag != null ">#{delFlag},</if>
+         </trim>
+    </insert>
+
+    <update id="updateCrmCustomer" parameterType="cc.flyflow.crm.entity.CrmCustomer">
+        update crm_customer
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="customerName != null  and customerName != ''">customer_name = #{customerName},</if>
+            <if test="creditCode != null  and creditCode != ''">credit_code = #{creditCode},</if>
+            <if test="industryType != null  and industryType != ''">industry_type = #{industryType},</if>
+            <if test="enterpriseScale != null  and enterpriseScale != ''">enterprise_scale = #{enterpriseScale},</if>
+            <if test="controllingShareholder != null  and controllingShareholder != ''">controlling_shareholder = #{controllingShareholder},</if>
+            <if test="customerLevel != null  and customerLevel != ''">customer_level = #{customerLevel},</if>
+            <if test="tags != null ">tags = #{tags,typeHandler=com.baomidou.mybatisplus.extension.handlers.JacksonTypeHandler},</if>
+            <if test="managerId != null ">manager_id = #{managerId},</if>
+            <if test="managerName != null  and managerName != ''">manager_name = #{managerName},</if>
+            <if test="lastFollowTime != null ">last_follow_time = #{lastFollowTime},</if>
+            <if test="followStatus != null  and followStatus != ''">follow_status = #{followStatus},</if>
+            <if test="isPublicPool != null ">is_public_pool = #{isPublicPool},</if>
+            <if test="updateTime != null ">update_time = #{updateTime},</if>
+            <if test="delFlag != null ">del_flag = #{delFlag},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteCrmCustomerById" parameterType="Long">
+        delete from crm_customer where id = #{id}
+    </delete>
+
+    <delete id="deleteCrmCustomerByIds" parameterType="String">
+        delete from crm_customer where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

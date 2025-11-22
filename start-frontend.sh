@@ -5,8 +5,8 @@
 
 # Configuration
 PORT=3000
-FRONTEND_DIR="/usr/local/share/data-marked-space/auto-flowless/auto-flowless-frontend"
-LOG_FILE="/usr/local/share/data-marked-space/auto-flowless/frontend.log"
+FRONTEND_DIR="/usr/local/share/data-case-6/auto-flowless/auto-flowless-frontend"
+LOG_FILE="/usr/local/share/data-case-6/auto-flowless/frontend.log"
 NODE_VERSION="20.10.0"
 
 # Check if the application is already running

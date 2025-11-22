@@ -3,8 +3,6 @@ import App from "./App.vue";
 import router from "@/router";
 import { setupStore } from "@/views/flyflow/stores/store";
 import { setupDirective } from "@/directive";
-
-import "@/permission";
 // import Vconsole from 'vconsole' // 引入 vconsole
 // new Vconsole() //
 // 本地SVG图标
@@ -35,14 +33,18 @@ const app = createApp(App);
 
 
 app.use(print)
-// 全局注册 自定义指令(directive)
-setupDirective(app);
 // 全局注册 状态管理(store)
 setupStore(app);
+// 全局注册 自定义指令(directive)
+setupDirective(app);
 
-app.use(router)
+// 导入权限控制模块
+import "@/permission";
+
+app.use(i18n)
+	.use(router)
 	.use(installIcon) // 注册全局图标
-	.use(i18n).mount("#app");
+	.mount("#app");
 
 app.directive("focus", {
   mounted(el) {

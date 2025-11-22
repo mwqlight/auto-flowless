@@ -94,10 +94,9 @@ function produceLayoutValue(item, obj) {
 	obj[item.id] = d;
 }
 
-import {useFlowStore} from "../stores/flow";
 
 export function getCurrentConfig(id) {
-
+	const {useFlowStore} = require('../stores/flow');
 	let flowStore = useFlowStore();
 	let step2 = flowStore.step2;
 	var idObjList = step2.filter(res => res.id === id);

@@ -8,8 +8,6 @@ import {isFeishu, isWxCp} from "./views/flyflow/utils/appversion";
 
 NProgress.configure({showSpinner: false}); // 进度条
 
-const permissionStore = usePermissionStoreHook();
-
 // 白名单路由
 const whiteList = ["/login", "/aplogin", "/ddlogin", "/wxcplogin", "/fslogin"];
 
@@ -47,7 +45,8 @@ router.beforeEach(async (to, from, next) => {
 			} else {
 				try {
 					const {roles} = await userStore.getInfo();
-					const accessRoutes = await permissionStore.generateRoutes(roles);
+					const permissionStore = usePermissionStoreHook();
+const accessRoutes = await permissionStore.generateRoutes(roles);
 					accessRoutes.forEach((route) => {
 						router.addRoute(route);
 					});

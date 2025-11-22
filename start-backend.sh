@@ -5,9 +5,9 @@
 
 # Configuration
 PORT=26859
-BACKEND_DIR="/usr/local/share/data-marked-space/auto-flowless/auto-flowless-backend"
+BACKEND_DIR="/usr/local/share/data-case-6/auto-flowless/auto-flowless-backend"
 JAR_NAME="web.jar"
-LOG_FILE="/usr/local/share/data-marked-space/auto-flowless/backend.log"
+LOG_FILE="/usr/local/share/data-case-6/auto-flowless/backend.log"
 
 # Check if the application is already running
 PID=$(lsof -t -i:$PORT 2>/dev/null)

@@ -4,23 +4,26 @@ function All() {
 }
 
 
-import {useFlowStore} from '../stores/flow'
 import {delayUnitOpts, conditionExpression} from '../utils/const.js'
 
 import * as util from './objutil.js'
 
 import {computed} from "vue";
 
+// 不要在全局作用域直接调用useFlowStore，而是在需要使用的函数内部调用
 
-let flowStore = useFlowStore();
-const step2FormList = computed(() => {
-	let step2 = flowStore.step2;
+// 定义一个函数来获取step2FormList
+function getStep2FormList() {
+	const {useFlowStore} = require('../stores/flow');
+	const flowStore = useFlowStore();
+	return flowStore.step2;
+}
 
-	return step2;
-})
-const formIdObj = computed(() => {
-	var obj = {}
-	for (var item of step2FormList.value) {
+// 定义一个函数来获取formIdObj
+function getFormIdObj() {
+	const step2 = getStep2FormList();
+	var obj = {} 
+	for (var item of step2) {
 		obj[item.id] = item;
 	}
 	obj['rootUser'] = {
@@ -28,7 +31,7 @@ const formIdObj = computed(() => {
 		type: 'SelectUser'
 	}
 	return obj
-})
+}
 
 
 All.prototype = {
@@ -528,7 +531,7 @@ All.prototype = {
 					}
 
 
-					let valueElement = formIdObj.value[key];
+					let valueElement = getFormIdObj()[key];
 
 
 					var name = valueElement?.name;
@@ -538,7 +541,7 @@ All.prototype = {
 						//明细汇总
 
 						let split = key.split('||');
-						valueElement = formIdObj.value[split[0]];
+						valueElement = getFormIdObj()[split[0]];
 						name = con.name;
 						if (util.isNull(valueShow)) {
 							if (expression.indexOf('empty') >= 0) {
