@@ -1,17 +1,13 @@
-import {useFlowStore} from '../stores/flow'
 import {computed} from "vue";
 import * as util from "@/views/flyflow/utils/objutil.js";
-let flowStore = useFlowStore();
-const step2FormList = computed(() => {
-	let step2 = flowStore.step2;
 
-	return step2;
-})
+// 不要在全局作用域直接调用useFlowStore，而是在需要使用的函数内部调用
 
 
 export function getAboveSameTypeFormList(aboveFormId,type,autoAddStarter=false){
-
-	let value = step2FormList.value;
+	const {useFlowStore} = require('../stores/flow');
+	const flowStore = useFlowStore();
+	let value = flowStore.step2;
 
 
 	var fList = [];

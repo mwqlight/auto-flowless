@@ -35,6 +35,12 @@
             <version>2.0.5</version>
         </dependency>
 
+        <dependency>
+            <groupId>cc.flyflow</groupId>
+            <artifactId>auto-flowless-crm-starter</artifactId>
+            <version>2.0.5</version>
+        </dependency>
+
         <!--为了支持jdk17 如果使用jdk17 请引入-->
         <!--        <dependency>-->
         <!--            <groupId>org.openjdk.nashorn</groupId>-->
